@@ -37,13 +37,23 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 app.use('/userProfile', express.static(path.join(__dirname, '../client/src/assets/profile/userProfile')));
 
 
-app.get('/', (req, res) => {
-  res.redirect('/api');
+// Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+// Handle GET requests to /api route
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from server!" });
+});
+
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
 
 
-app.use("/api", appRoutes);
+
 app.use("/api", getProfilePictureUrl);
+app.use("/api", appRoutes);
 
 
 // app.get('/', (req, res) => {
