@@ -220,9 +220,12 @@ const { query } = require("../db");
 const { calculateScore } = require('./calculateScore');
 const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
 
+require('dotenv').config();
+
+
 async function userData(storedData) {
   const queryParams = [];
-  let sqlQuery = `SELECT * FROM wineries WHERE main_area = %L AND average_cost_per_person < %L`;
+  let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = %L AND average_cost_per_person < %L`;
   queryParams.push(storedData.TourArea, storedData.BudgetRange);
 
   const selectedDate = new Date(storedData.selectedDate);
