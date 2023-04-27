@@ -37,13 +37,18 @@ app.use(require('body-parser').urlencoded({ extended: true }));
 app.use('/userProfile', express.static(path.join(__dirname, '../client/src/assets/profile/userProfile')));
 
 
-app.use("/api", getProfilePictureUrl);
+app.get('/', (req, res) => {
+  res.redirect('/api');
+});
+
 
 app.use("/api", appRoutes);
+app.use("/api", getProfilePictureUrl);
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+
+// app.get('/', (req, res) => {
+//   res.send('Hello, World!');
+// });
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
