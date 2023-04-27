@@ -296,7 +296,7 @@ function signUp(username, email, password, firstName, lastName) {
   console.log('SignUp function called');
 
   return new Promise((resolve, reject) => {
-    const queryString = format("SELECT * FROM users WHERE email = %L", email);
+    const queryString = format("SELECT * FROM wineries.users WHERE email = %L", email);
     // console.log("Executing query:", queryString);
 
     query(queryString, (err, result) => {
@@ -309,7 +309,7 @@ function signUp(username, email, password, firstName, lastName) {
           console.log('Email already exists');
           reject(new Error("כתובת המייל כבר נמצאת בשימוש"));
         } else {
-          const queryString2 = format("SELECT * FROM users WHERE username = %L", username);
+          const queryString2 = format("SELECT * FROM wineries.users WHERE username = %L", username);
           // console.log("Executing query:", queryString2);
 
           query(queryString2, (err, result) => {
@@ -327,7 +327,7 @@ function signUp(username, email, password, firstName, lastName) {
                     console.error('Hashing error:', err);
                     reject(err);
                   } else {
-                    const queryString3 = format("INSERT INTO users (username, email, password, first_name, last_name) VALUES (%L, %L, %L, %L, %L) RETURNING id", username, email, hash, firstName, lastName);
+                    const queryString3 = format("INSERT INTO wineries.users (username, email, password, first_name, last_name) VALUES (%L, %L, %L, %L, %L) RETURNING id", username, email, hash, firstName, lastName);
                     // console.log("Executing query:", queryString3);
 
                     query(queryString3, (err, result) => {
@@ -340,7 +340,7 @@ function signUp(username, email, password, firstName, lastName) {
                         const expiresIn = 24 * 60 * 60 * 1000; // 24 hours
                         const expiresAt = new Date(Date.now() + expiresIn);
 
-                        const queryString4 = format("INSERT INTO email_verification_tokens (user_id, token, expires_at) VALUES (%L, %L, %L)", userId, token, expiresAt.toISOString());
+                        const queryString4 = format("INSERT INTO wineries.email_verification_tokens (user_id, token, expires_at) VALUES (%L, %L, %L)", userId, token, expiresAt.toISOString());
                         // console.log("Executing query:", queryString4);
 
                         query(queryString4, (err) => {
