@@ -281,11 +281,149 @@
 
 
 
+// // NEW POSTGRESQL CODE
+// const bcrypt = require("bcrypt");
+// const { query } = require("../db");
+// const format = require('pg-format');
+
+
+// const config = require('../config');
+
+// const crypto = require('crypto');
+// const nodemailer = require('nodemailer');
+
+// function signUp(username, email, password, firstName, lastName) {
+//   console.log('SignUp function called');
+
+//   return new Promise((resolve, reject) => {
+//     const queryString = format("SELECT * FROM users WHERE email = %L", email);
+//     // console.log("Executing query:", queryString);
+
+//     query(queryString, (err, result) => {
+//       if (err) {
+//         console.error('Query 1 error:', err);
+//         reject(err);
+//       } else {
+//         const row = result.rows[0];
+//         if (row) {
+//           console.log('Email already exists');
+//           reject(new Error("כתובת המייל כבר נמצאת בשימוש"));
+//         } else {
+//           const queryString2 = format("SELECT * FROM users WHERE username = %L", username);
+//           // console.log("Executing query:", queryString2);
+
+//           query(queryString2, (err, result) => {
+//             if (err) {
+//               console.error('Query 2 error:', err);
+//               reject(err);
+//             } else {
+//               const row = result.rows[0];
+//               if (row) {
+//                 console.log('Username already exists');
+//                 reject(new Error("שם משתמש כבר נמצא בשימוש"));
+//               } else {
+//                 bcrypt.hash(password, 10, function (err, hash) {
+//                   if (err) {
+//                     console.error('Hashing error:', err);
+//                     reject(err);
+//                   } else {
+//                     const queryString3 = format("INSERT INTO users (username, email, password, first_name, last_name) VALUES (%L, %L, %L, %L, %L) RETURNING id", username, email, hash, firstName, lastName);
+//                     // console.log("Executing query:", queryString3);
+
+//                     query(queryString3, (err, result) => {
+//                       if (err) {
+//                         console.error('Query 3 error:', err);
+//                         reject(err);
+//                       } else {
+//                         const userId = result.rows[0].id;
+//                         const token = generateToken();
+//                         const expiresIn = 24 * 60 * 60 * 1000; // 24 hours
+//                         const expiresAt = new Date(Date.now() + expiresIn);
+
+//                         const queryString4 = format("INSERT INTO email_verification_tokens (user_id, token, expires_at) VALUES (%L, %L, %L)", userId, token, expiresAt.toISOString());
+//                         // console.log("Executing query:", queryString4);
+
+//                         query(queryString4, (err) => {
+//                           if (err) {
+//                             console.error('Query 4 error:', err);
+//                             reject(err);
+//                           } else {
+//                             sendVerificationEmail(email, token)
+//                               .then(() => {
+//                                 console.log('Email sent successfully');
+//                                 resolve({ username, email, firstName, lastName });
+//                               })
+//                               .catch((err) => {
+//                                 console.error('Sending email error:', err);
+//                                 reject(err);
+//                               });
+//                           }
+//                         });
+//                       }
+//                     });
+//                   }
+//                 });
+//               }
+//             }
+//           });
+//         }
+//       }
+//     });
+//   });
+// }
+
+
+// function generateToken() {
+//   return crypto.randomBytes(32).toString('hex');
+// }
+
+// async function sendVerificationEmail(email, token) {
+//   const transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//       user: 'earful2357@gmail.com', 
+//       pass: 'wppmlzlemkqfhmma'
+//     },
+//     tls: {
+//       rejectUnauthorized: false,
+//     },
+//   });
+
+//   const verificationLink = `${config.siteUrl}/verify-email/${token}`;
+
+//   const mailOptions = {
+//     from: '"wineries-il" <earful2357@gmail.com>',
+//     to: email,
+//     subject: 'Wineries-IL - אימות כתובת דוא"ל',
+//     html: `<div style="text-align: center;">
+//             <a href="${verificationLink}" style="background-color: #CD5C5C; border: none; font-size: 28px; color: #FFFFFF; padding: 10px; width: 200px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px; font-weight: bold;">אימות משתמש</a>
+//           </div>
+//     `,
+//   };
+
+//   return transporter.sendMail(mailOptions);
+// }
+
+// module.exports = {
+//   signUp,
+// };
+
+
+
+
+
+
+
+
+
+
+
 // NEW POSTGRESQL CODE
 const bcrypt = require("bcrypt");
 const { query } = require("../db");
 const format = require('pg-format');
 
+require('dotenv').config();
 
 const config = require('../config');
 
@@ -296,7 +434,7 @@ function signUp(username, email, password, firstName, lastName) {
   console.log('SignUp function called');
 
   return new Promise((resolve, reject) => {
-    const queryString = format("SELECT * FROM users WHERE email = %L", email);
+    const queryString = format(`SELECT * FROM ${process.env.TABLE_NAME}.users WHERE email = %L`, email);
     // console.log("Executing query:", queryString);
 
     query(queryString, (err, result) => {
@@ -309,7 +447,7 @@ function signUp(username, email, password, firstName, lastName) {
           console.log('Email already exists');
           reject(new Error("כתובת המייל כבר נמצאת בשימוש"));
         } else {
-          const queryString2 = format("SELECT * FROM users WHERE username = %L", username);
+          const queryString2 = format(`SELECT * FROM ${process.env.TABLE_NAME}.users WHERE username = %L`, username);
           // console.log("Executing query:", queryString2);
 
           query(queryString2, (err, result) => {
@@ -327,7 +465,7 @@ function signUp(username, email, password, firstName, lastName) {
                     console.error('Hashing error:', err);
                     reject(err);
                   } else {
-                    const queryString3 = format("INSERT INTO users (username, email, password, first_name, last_name) VALUES (%L, %L, %L, %L, %L) RETURNING id", username, email, hash, firstName, lastName);
+                    const queryString3 = format(`INSERT INTO ${process.env.TABLE_NAME}.users (username, email, password, first_name, last_name) VALUES (%L, %L, %L, %L, %L) RETURNING id`, username, email, hash, firstName, lastName);
                     // console.log("Executing query:", queryString3);
 
                     query(queryString3, (err, result) => {
@@ -340,7 +478,7 @@ function signUp(username, email, password, firstName, lastName) {
                         const expiresIn = 24 * 60 * 60 * 1000; // 24 hours
                         const expiresAt = new Date(Date.now() + expiresIn);
 
-                        const queryString4 = format("INSERT INTO email_verification_tokens (user_id, token, expires_at) VALUES (%L, %L, %L)", userId, token, expiresAt.toISOString());
+                        const queryString4 = format(`INSERT INTO ${process.env.TABLE_NAME}.email_verification_tokens (user_id, token, expires_at) VALUES (%L, %L, %L)`, userId, token, expiresAt.toISOString());
                         // console.log("Executing query:", queryString4);
 
                         query(queryString4, (err) => {
