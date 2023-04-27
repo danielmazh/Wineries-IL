@@ -34,15 +34,16 @@
 
 
 
-
-
 const { query } = require('../db'); // Assuming you have a db.js file that exports the 'query' function
 const format = require('pg-format');
+
+require('dotenv').config();
+
 
 function verifyEmail(req, res, next) {
   console.log('verifyEmail function called');
   const token = req.params.token;
-  const queryString = format("SELECT * FROM email_verification_tokens WHERE token = %L AND expires_at > %L", token, new Date().toISOString());
+  const queryString = format(`SELECT * FROM ${process.env.TABLE_NAME}.email_verification_tokens WHERE token = %L AND expires_at > %L`, token, new Date().toISOString());
 
   query(queryString, (err, result) => {
     if (err) {
@@ -51,14 +52,14 @@ function verifyEmail(req, res, next) {
       res.status(400).send("האימות נכשל, נסו שוב");
     } else {
       const row = result.rows[0];
-      const queryString2 = format("UPDATE users SET email_verified = 1 WHERE id = %L", row.user_id);
+      const queryString2 = format(`UPDATE ${process.env.TABLE_NAME}.users SET email_verified = 1 WHERE id = %L`, row.user_id);
 
       query(queryString2, (err) => {
         if (err) {
           next(err);
         } else {
           // Delete the used token from the email_verification_tokens table
-          const queryString3 = format("DELETE FROM email_verification_tokens WHERE token = %L", token);
+          const queryString3 = format(`DELETE FROM ${process.env.TABLE_NAME}.email_verification_tokens WHERE token = %L`, token);
 
           query(queryString3, (err) => {
             if (err) {
