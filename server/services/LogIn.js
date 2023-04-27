@@ -3,8 +3,11 @@ const { query } = require('../db'); // Assuming you have a db.js file that expor
 const bcrypt = require('bcrypt');
 const format = require('pg-format');
 
+require('dotenv').config();
+
+
 function loginUser(email, password) {
-  const queryString = format("SELECT * FROM users WHERE email ILIKE %L", email);
+  const queryString = format(`SELECT * FROM ${process.env.TABLE_NAME}.users WHERE email ILIKE %L`, email);
 
   return new Promise((resolve, reject) => {
     query(queryString, async (err, result) => {
