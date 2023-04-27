@@ -88,8 +88,11 @@
 const { query } = require('../db'); // Assuming you have a db.js file that exports the 'query' function
 const format = require('pg-format');
 
+require('dotenv').config();
+
+
 const insertQuery = `
-  INSERT INTO "wineries" (winery_name, website, phone, main_area, secondary_area, address, kosher_type, oh_sunday, oh_monday, oh_tuesday, oh_wednesday, oh_thursday, oh_friday, oh_saturday, accessibility, people_max_amount, winery_style, stay_time, average_cost_per_person, tour_style, tour_attractions, wines_types, tour_restaurant, additional_information)
+  INSERT INTO ${process.env.TABLE_NAME}.wineries (winery_name, website, phone, main_area, secondary_area, address, kosher_type, oh_sunday, oh_monday, oh_tuesday, oh_wednesday, oh_thursday, oh_friday, oh_saturday, accessibility, people_max_amount, winery_style, stay_time, average_cost_per_person, tour_style, tour_attractions, wines_types, tour_restaurant, additional_information)
   VALUES (%L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L, %L)
   RETURNING winery_id
 `;
