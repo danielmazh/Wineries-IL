@@ -1,0 +1,39 @@
+/* .tooltip {
+    position: relative;
+  }
+  
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip .tooltip-icon:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+
+
+.react-tooltip {
+    font-size: 14px;
+    padding: 8px;
+    z-index: 99999;
+  }
+  
+  .react-tooltip.effect-solid {
+    background-color: #333;
+    color: #fff;
+  }
+  
+   */
