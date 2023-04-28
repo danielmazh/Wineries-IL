@@ -250,7 +250,7 @@ const UserProfile = () => {
 
       setProfilePictureUrl(response.data.url);
 
-      console.log('Fetched profilePictureUrl -- line 247:', response.data.url);
+      console.log('Fetched profilePictureUrl -- line 253:', response.data.url);
       
     } catch (error) {
       console.error(error);

@@ -169,8 +169,9 @@ router.get('/getProfilePictureUrl', (req, res) => {
     // Check if the file exists in the S3 bucket
     S3.headObject(params, (err) => {
       if (err) {
-
         console.log('S3 headObject error:', err);
+        console.log('File does not exist -- line 169');
+
         // console.log('File does not exist -- line 169'  )
 
         // File does not exist, try the next extension
