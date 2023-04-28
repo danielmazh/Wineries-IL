@@ -7,6 +7,8 @@ const getProfilePictureUrl = require('./services/getProfilePictureUrl');
 const multer = require('multer'); // ADDED: import multer
 
 const { addWinery, uploadWineryLogo } = require('./views/WineryAdd'); // ADDED: import addWinery and uploadWineryLogo
+const { verifyEmail } = require('./views/VerifyEmail');
+
 
 const PORT = process.env.PORT || 3001;
 
@@ -44,6 +46,9 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
+
+app.get('/verify-email/:token', verifyEmail);
+
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
