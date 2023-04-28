@@ -536,7 +536,7 @@ async function sendVerificationEmail(email, token) {
 
 
   const mailOptions = {
-    from: `"wineries-il" <${process.env.EMAIL_USER}>`,
+    from: `"לא להשיב למייל זה" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: 'Wineries-IL - אימות כתובת דוא"ל',
     html: `<div style="text-align: center;">
