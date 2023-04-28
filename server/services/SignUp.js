@@ -425,6 +425,7 @@ const format = require('pg-format');
 
 require('dotenv').config();
 
+
 const config = require('../config');
 
 const crypto = require('crypto');
@@ -519,8 +520,8 @@ async function sendVerificationEmail(email, token) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'earful2357@gmail.com', 
-      pass: 'wppmlzlemkqfhmma'
+      user: `${process.env.EMAIL_USER}`, 
+      pass: `${process.env.EMAIL_PASS}`
     },
     tls: {
       rejectUnauthorized: false,
@@ -535,7 +536,7 @@ async function sendVerificationEmail(email, token) {
 
 
   const mailOptions = {
-    from: '"wineries-il" <earful2357@gmail.com>',
+    from: '"wineries-il"',
     to: email,
     subject: 'Wineries-IL - אימות כתובת דוא"ל',
     html: `<div style="text-align: center;">
