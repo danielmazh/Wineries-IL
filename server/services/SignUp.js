@@ -527,7 +527,12 @@ async function sendVerificationEmail(email, token) {
     },
   });
 
-  const verificationLink = `${config.siteUrl}/verify-email/${token}`;
+  // const verificationLink = `${config.siteUrl}/verify-email/${token}`;
+  const verificationLink = `https://www.wineries-il.co.il/verify-email/${token}`;
+
+
+
+
 
   const mailOptions = {
     from: '"wineries-il" <earful2357@gmail.com>',
