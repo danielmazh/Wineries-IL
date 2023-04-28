@@ -77,6 +77,4 @@ router.post('/addWinery/:wineryID', upload.single('wineryLogo'), addWineryView.u
 router.post('/uploadProfilePicture', uploadProfilePictureView.uploadProfilePicture);
 router.get('/verify-email/:token', verifyEmailController.verifyEmail);
 
-router.use(getProfilePictureUrl); // Add getProfilePictureUrl function to the router
-
 module.exports = router;

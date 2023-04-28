@@ -57,8 +57,13 @@ app.get('*', (req, res) => {
 
 
 
-app.use("/api", getProfilePictureUrl);
+// app.use("/api", getProfilePictureUrl);
+// app.use("/api", appRoutes);
+
+
+app.get("/api/getProfilePictureUrl", getProfilePictureUrl); // Add this line before app.use("/api", appRoutes)
 app.use("/api", appRoutes);
+
 
 
 // app.get('/', (req, res) => {
