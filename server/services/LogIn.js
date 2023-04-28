@@ -24,7 +24,7 @@ function loginUser(email, password) {
         resolve(null);
         return;
       }
-
+// if login === 1 then user is auth
       if (row.email_verified === 0) {
         console.log(`Email not verified for user ${row.id}`);
         resolve({ emailNotVerified: true });
