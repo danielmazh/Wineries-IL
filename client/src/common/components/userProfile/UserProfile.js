@@ -238,24 +238,25 @@ const UserProfile = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState(null);
 
   const fetchProfilePictureUrl = async () => {
-    console.log('calling API -- line 241:');
-
+    console.log("calling API -- line 241:");
+  
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get('/api/getProfilePictureUrl', {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("/api/getProfilePictureUrl", {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      console.log('END of calling API -- line 249:');
-
+  
+      console.log("Response data from API:", response.data); // Add this line
+      console.log("END of calling API -- line 249:");
+  
       setProfilePictureUrl(response.data.url);
-
-      console.log('Fetched profilePictureUrl -- line 253:', response.data.url);
-      
+  
+      console.log("Fetched profilePictureUrl -- line 253:", response.data.url);
     } catch (error) {
       console.error(error);
     }
   };
+  
   
   useEffect(() => {
     fetchProfilePictureUrl();

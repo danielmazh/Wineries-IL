@@ -31,6 +31,8 @@
 import React from 'react';
 
 function UserProfileIcon({ profilePictureUrl }) {
+  console.log("UserProfileIcon profilePictureUrl:", profilePictureUrl); // Add this line
+
   if (profilePictureUrl && profilePictureUrl !== 'null') {
     return (
       <img

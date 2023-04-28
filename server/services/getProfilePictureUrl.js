@@ -148,53 +148,48 @@ router.get('/getProfilePictureUrl', (req, res) => {
 
   const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif']; // Add more extensions if needed
   
-
   // Find the first matching file with an allowed extension
   const findProfilePicture = (extensions) => {
+    console.log("Checking extensions:", extensions); // Add this line
+  
     if (extensions.length === 0) {
+      console.log("No matching extension found"); // Add this line
       return res.json({ url: null });
     }
-
-
+  
     const currentExtension = extensions[0];
-    // const profilePictureFilename = `profilePicture-${userId}${currentExtension}`;
     const profilePictureFilename = `UserProfileIcon/profilePicture-${userId}${currentExtension}`;
-
-
+  
     const params = {
       Bucket: AWS_S3_BUCKET_NAME,
       Key: profilePictureFilename,
     };
-
+  
     // Check if the file exists in the S3 bucket
     S3.headObject(params, (err) => {
       if (err) {
-        console.log('S3 headObject error:', err);
-        console.log('File does not exist -- line 169');
-
-        // console.log('File does not exist -- line 169'  )
-
+        console.log("S3 headObject error:", err);
+        console.log("File does not exist -- line 169");
+  
         // File does not exist, try the next extension
         findProfilePicture(extensions.slice(1));
       } else {
-
-        console.log('File exist -- line 175'  )
-
+        console.log("File exist -- line 175");
+  
         // File exists, generate a signed URL
         const signedUrlExpireSeconds = 60 * 5; // Set the URL to expire in 5 minutes
-        const profilePictureUrl = S3.getSignedUrl('getObject', {
+        const profilePictureUrl = S3.getSignedUrl("getObject", {
           ...params,
           Expires: signedUrlExpireSeconds,
         });
-
-        console.log('returned url: "profilePictureUrl" -- line 184', profilePictureUrl )
-
+  
+        console.log('returned url: "profilePictureUrl" -- line 184', profilePictureUrl);
+  
         res.json({ url: profilePictureUrl });
-
-          }
-        });
-
-      };
+      }
+    });
+  };
+  
 
   findProfilePicture(allowedExtensions);
 
