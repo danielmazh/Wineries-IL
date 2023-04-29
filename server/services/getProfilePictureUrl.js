@@ -150,10 +150,10 @@ router.get('/getProfilePictureUrl', (req, res) => {
   
   // Find the first matching file with an allowed extension
   const findProfilePicture = (extensions) => {
-    // console.log("Checking extensions:", extensions); // Add this line
+    // console.log("Checking extensions:", extensions); 
   
     if (extensions.length === 0) {
-      console.log("No matching extension found"); // Add this line
+      console.log("No matching extension found"); 
       return res.json({ url: null });
     }
   

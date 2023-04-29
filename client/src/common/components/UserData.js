@@ -31,30 +31,49 @@ useEffect(() => {
       const sortedTables = sortTablesByAverageScore(data, tourCount);
       setQueryResults(sortedTables);
 
+      // const urls = await Promise.all(
+      //   sortedTables.flatMap((table) =>
+      //     table.wineries.map(async (winery) => {
+      //       const id = winery.winery_ID;
+      //       let logoUrl = '';
+
+      //       for (const ext of supportedExtensions) {
+      //         try {
+      //           const logo = await import(`../../assets/winery-logo/winery-${id}.${ext}`);
+      //           logoUrl = logo.default;
+      //           break;
+      //         } catch (error) {
+      //           console.debug(`No logo found for winery-${id} with extension .${ext}`);
+      //         }
+      //       }
+
+      //       if (!logoUrl) {
+      //         console.error(`Error loading logo for winery-${id}`);
+      //       }
+
+      //       return { id, url: logoUrl }; // Return the found logo URL or an empty string if no logo was found
+      //     })
+      //   )
+      // );
+
+
       const urls = await Promise.all(
         sortedTables.flatMap((table) =>
           table.wineries.map(async (winery) => {
             const id = winery.winery_ID;
-            let logoUrl = '';
-
-            for (const ext of supportedExtensions) {
-              try {
-                const logo = await import(`../../assets/winery-logo/winery-${id}.${ext}`);
-                logoUrl = logo.default;
-                break;
-              } catch (error) {
-                console.debug(`No logo found for winery-${id} with extension .${ext}`);
-              }
-            }
-
-            if (!logoUrl) {
-              console.error(`Error loading logo for winery-${id}`);
-            }
-
-            return { id, url: logoUrl }; // Return the found logo URL or an empty string if no logo was found
+            const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
+      
+            return { id, url: logoUrl }; // Return the logo URL
           })
         )
       );
+      
+
+
+
+
+
+
 
       setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
     })
