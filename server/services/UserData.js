@@ -178,41 +178,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // server\services\UserData.js
-
-
 
 const format = require('pg-format');
 const { query } = require("../db");
@@ -225,7 +191,9 @@ require('dotenv').config();
 
 async function userData(storedData) {
   const queryParams = [];
-  let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = %L AND average_cost_per_person < %L`;
+  // let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = %L AND average_cost_per_person < %L`;
+  let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = $1 AND average_cost_per_person < $2`;
+
   queryParams.push(storedData.TourArea, storedData.BudgetRange);
 
   const selectedDate = new Date(storedData.selectedDate);
@@ -254,7 +222,10 @@ async function userData(storedData) {
   console.log('sqlQuery:', sqlQuery);
 
   return new Promise((resolve, reject) => {
-    query(format(sqlQuery, ...queryParams), (err, res) => {
+    query(sqlQuery, queryParams, (err, res) => {
+
+    // query(format(sqlQuery, ...queryParams), (err, res) => {
+      
       if (err) {
         console.error(err);
         reject(err);

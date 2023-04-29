@@ -1,3 +1,5 @@
+// client\src\common\components\TourView.js
+
 import React, { useState, useEffect } from 'react';
 import '../../styles/DisplayTourResults.css';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
