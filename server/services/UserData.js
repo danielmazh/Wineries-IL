@@ -222,15 +222,18 @@ async function userData(storedData) {
   console.log('sqlQuery:', sqlQuery);
 
   return new Promise((resolve, reject) => {
+    console.log('SQL Query:', sqlQuery); // Add this line
+    console.log('Query Params:', queryParams); // Add this line
     query(sqlQuery, queryParams, (err, res) => {
 
     // query(format(sqlQuery, ...queryParams), (err, res) => {
-      
+
       if (err) {
         console.error(err);
         reject(err);
       } else {
         const rows = res.rows;
+        console.log('Raw Rows:', rows); // Add this line
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {
           const scores = calculateScore(row, storedData);
