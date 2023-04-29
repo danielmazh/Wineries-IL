@@ -1,3 +1,5 @@
+// client\src\common\components\UserData.js
+
 import React, { useState, useEffect } from 'react';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import FindReplaceIcon from '@mui/icons-material/FindReplace';
