@@ -40,16 +40,6 @@ function DisplayTourResults() {
     fetch('/api/getUserdata')
       .then((res) => res.json())
 
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  //   fetch('/api/getUserdata')
-  // .then(async (res) => {
-  //   const rawResponse = await res.text();
-  //   console.log('Raw Response:', rawResponse);
-  //   return JSON.parse(rawResponse);
-  // })
-
-
-
       .then(async (data) => {
         const sortedTables = sortTablesByAverageScore(data, tourCount);
         setQueryResults(sortedTables);
