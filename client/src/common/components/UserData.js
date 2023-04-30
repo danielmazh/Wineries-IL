@@ -62,18 +62,17 @@ useEffect(() => {
           table.wineries.map(async (winery) => {
             const id = winery.winery_ID;
             const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
+            
+
+            console.log('components\UserData id', id)
+            console.log('components\UserData logoUrl', logoUrl)
+
       
             return { id, url: logoUrl }; // Return the logo URL
           })
         )
       );
       
-
-
-
-
-
-
 
       setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
     })
@@ -105,6 +104,10 @@ useEffect(() => {
   }
 
   const currentTable = queryResults[tableIndex];
+
+  console.log('components\UserData queryResults.length', queryResults.length)
+  console.log('components\UserData currentTable', currentTable)
+
 
   return (
     <div style={{ textAlign: 'center' }} dir="rtl">

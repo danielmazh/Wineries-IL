@@ -47,6 +47,10 @@ function DisplayTourResults() {
             table.wineries.map(async (winery) => {
               const id = winery.winery_id;
               const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
+
+              console.log('components\TourView logoUrl:', logoUrl)
+              console.log('components\TourView id:', id)
+
   
               return { id, url: logoUrl }; // Return the logo URL
             })
@@ -84,6 +88,9 @@ function DisplayTourResults() {
   }
 
   const currentTable = queryResults[tableIndex];
+
+  console.log('components\TourView currentTable:', currentTable)
+
 
   return (
     <div style={{ textAlign: 'center' }} dir="rtl">
