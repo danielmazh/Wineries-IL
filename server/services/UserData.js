@@ -97,7 +97,7 @@ const { query } = require("../db");
 const { calculateScore } = require('./calculateScore');
 const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
 
-const logger = require('../logger');
+const logger = require('../../logger');
 require('dotenv').config();
 
 async function userData(storedData) {

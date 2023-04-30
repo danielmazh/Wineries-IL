@@ -44,7 +44,7 @@
 // server\views\UserData.js
 
 const UserDataService = require("../services/UserData");
-const logger = require('../logger');
+const logger = require('../../logger');
 
 async function userData(req, res) {
   const storedData = req.body;
