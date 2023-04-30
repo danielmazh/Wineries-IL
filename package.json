@@ -47,6 +47,7 @@
     "react-router-dom": "^6.9.0",
     "react-tooltip": "^5.10.4",
     "sqlite3": "^5.1.6",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "winston": "^3.8.2"
   }
 }
