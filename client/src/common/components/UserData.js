@@ -25,11 +25,14 @@ function DisplayQueryResults() {
   const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
 useEffect(() => {
+  console.log('START of calling /api/getUserdata | UserData.js')
   fetch('/api/getUserdata')
     .then((res) => res.json())
     .then(async (data) => {
       const sortedTables = sortTablesByAverageScore(data, tourCount);
       setQueryResults(sortedTables);
+      console.log('END of calling /api/getUserdata | UserData.js')
+
 
       // const urls = await Promise.all(
       //   sortedTables.flatMap((table) =>
@@ -67,7 +70,6 @@ useEffect(() => {
             console.log('components\UserData id', id)
             console.log('components\UserData logoUrl', logoUrl)
 
-      
             return { id, url: logoUrl }; // Return the logo URL
           })
         )
