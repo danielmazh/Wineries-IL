@@ -13,6 +13,7 @@ async function userData(req, res) {
 
   } catch (err) {
     console.error(err);
+    console.log(err);
     res.status(500).send("Error confirming FormData");
   }
 }
@@ -28,6 +29,8 @@ async function getUserData(req, res) {
 
   } catch (err) {
     console.error(err);
+    console.log(err);
+
     res.status(500).send("Error confirming FormData");
   }
 }

@@ -1147,7 +1147,7 @@ function MultiPageForm() {
 // Part 1: Handle date input
 const handleDateInputChange = (date) => {
   setFormData({ ...formData, selectedDate: new Date(date) });
-  console.log('date1: ', date);
+  // console.log('date1: ', date);
 
   // Update validation state
   setValidation((prevValidation) => {
@@ -1245,7 +1245,7 @@ const handleOtherInputChange = (event) => {
 
 async function handleFormSubmit  (event)  {
   event.preventDefault();
-  console.log('currentPage', currentPage);
+  // console.log('currentPage', currentPage);
   // console.log(storedData)
   // console.log(formData)
 

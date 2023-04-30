@@ -50,6 +50,7 @@ async function userData(storedData) {
 
       if (err) {
         console.error(err);
+        console.log(err);
         reject(err);
       } else {
         const rows = res.rows;
