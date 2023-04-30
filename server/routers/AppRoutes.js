@@ -67,14 +67,26 @@ const getProfilePictureUrl = require('../services/getProfilePictureUrl'); // Imp
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-router.post("/signup", signUpView.signUp);
-router.post("/login", loginView.loginUser);
-router.post("/logout", logoutView.logoutUser);
-router.post("/userdata", UserDataView.userData);
-router.get("/getUserdata", getUserDataView.getUserData);
-router.post("/addWinery", addWineryView.addWinery);
-router.post('/addWinery/:wineryID', upload.single('wineryLogo'), addWineryView.uploadWineryLogo);
-router.post('/uploadProfilePicture', uploadProfilePictureView.uploadProfilePicture);
-router.get('/verify-email/:token', verifyEmailController.verifyEmail);
+// router.post("/signup", signUpView.signUp);
+// router.post("/login", loginView.loginUser);
+// router.post("/logout", logoutView.logoutUser);
+// router.post("/userdata", UserDataView.userData);
+// router.get("/getUserdata", getUserDataView.getUserData);
+// router.post("/addWinery", addWineryView.addWinery);
+// router.post('/addWinery/:wineryID', upload.single('wineryLogo'), addWineryView.uploadWineryLogo);
+// router.post('/uploadProfilePicture', uploadProfilePictureView.uploadProfilePicture);
+// router.get('/verify-email/:token', verifyEmailController.verifyEmail);
+
+
+router.post("/api/signup", signUpView.signUp);
+router.post("/api/login", loginView.loginUser);
+router.post("/api/logout", logoutView.logoutUser);
+router.post("/api/userdata", UserDataView.userData);
+router.get("/api/getUserdata", getUserDataView.getUserData);
+router.post("/api/addWinery", addWineryView.addWinery);
+router.post('/api/addWinery/:wineryID', upload.single('wineryLogo'), addWineryView.uploadWineryLogo);
+router.post('/api/uploadProfilePicture', uploadProfilePictureView.uploadProfilePicture);
+router.get('/api/verify-email/:token', verifyEmailController.verifyEmail);
+
 
 module.exports = router;

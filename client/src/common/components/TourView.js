@@ -42,6 +42,7 @@ function DisplayTourResults() {
       .then(async (data) => {
         const sortedTables = sortTablesByAverageScore(data, tourCount);
         setQueryResults(sortedTables);
+        console.log('END of calling /api/getUserdata | TourView.js')
 
   
         const urls = await Promise.all(
@@ -70,8 +71,6 @@ function DisplayTourResults() {
 
       });
   }, [tourCount]);
-
-  console.log('END of calling /api/getUserdata | TourView.js')
 
   
 

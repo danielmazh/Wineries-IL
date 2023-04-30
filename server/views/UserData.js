@@ -22,13 +22,28 @@ async function userData(req, res) {
 }
 
 
+// async function getUserData(req, res) {
+//   try {
+//     const storedData = UserDataService.storedFormData; // Get the stored form data
+//     const results = await UserDataService.userData(storedData); // Use the form data to fetch query results
+
+//     console.log('storedData/Results \views\UserData.js:', results, storedData);
+//     res.send(JSON.stringify(results));
+
+//   } catch (err) {
+//     console.error(err);
+//     console.log('ERROR2 \views\UserData.js:', err);
+//     res.status(500).send("Error confirming FormData");
+//   }
+// }
+
 async function getUserData(req, res) {
   try {
     const storedData = UserDataService.storedFormData; // Get the stored form data
     const results = await UserDataService.userData(storedData); // Use the form data to fetch query results
 
     console.log('storedData/Results \views\UserData.js:', results, storedData);
-    res.send(JSON.stringify(results));
+    res.json(results); // Change this line from res.send() to res.json()
 
   } catch (err) {
     console.error(err);
@@ -36,6 +51,10 @@ async function getUserData(req, res) {
     res.status(500).send("Error confirming FormData");
   }
 }
+
+
+
+
 
 module.exports = {
   userData , getUserData
