@@ -62,7 +62,7 @@ useEffect(() => {
           table.wineries.map(async (winery) => {
             const id = winery.winery_ID;
             const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
-            
+
 
             console.log('components\UserData id', id)
             console.log('components\UserData logoUrl', logoUrl)
@@ -78,6 +78,9 @@ useEffect(() => {
     })
     .catch((err) => {
       console.error(err);
+      
+      console.log('components\UserData err:', err)
+
     });
 }, [tourCount]);
 
