@@ -1290,12 +1290,12 @@ async function handleFormSubmit  (event)  {
 
   // ********** Buttons **********
   const handlePreviousClick = () => {
-    console.log('currentPage', currentPage);
+    // console.log('currentPage', currentPage);
     setCurrentPage(currentPage - 1);
   };
 
   const handleNextClick = () => {
-    console.log('currentPage', currentPage);
+    // console.log('currentPage', currentPage);
     setCurrentPage(currentPage + 1);
   };
 
