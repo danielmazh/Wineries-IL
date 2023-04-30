@@ -37,16 +37,16 @@ function DisplayTourResults() {
 
   useEffect(() => {
     console.log('START of calling /api/getUserdata | TourView.js')
-    // fetch('/api/getUserdata')
-    //   .then((res) => res.json())
+    fetch('/api/getUserdata')
+      .then((res) => res.json())
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    fetch('/api/getUserdata')
-  .then(async (res) => {
-    const rawResponse = await res.text();
-    console.log('Raw Response:', rawResponse);
-    return JSON.parse(rawResponse);
-  })
+  //   fetch('/api/getUserdata')
+  // .then(async (res) => {
+  //   const rawResponse = await res.text();
+  //   console.log('Raw Response:', rawResponse);
+  //   return JSON.parse(rawResponse);
+  // })
 
 
 

@@ -94,8 +94,6 @@
 
 
 // server\index.js
-
-
 const express = require("express");
 const appRoutes = require("./routers/AppRoutes");
 const config = require("./config");
@@ -145,6 +143,20 @@ app.get("/api", (req, res) => {
 
 app.get('/verify-email/:token', verifyEmail);
 
+// // All other GET requests not handled before will return our React app
+// app.get('*', (req, res, next) => {
+//   if (req.path.startsWith('/api/getProfilePictureUrl')) {
+//     next();
+//   } else {
+//     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+//   }
+// });
+
+app.use("/api", getProfilePictureUrl);
+app.use("/api", appRoutes);
+
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api/getProfilePictureUrl')) {
@@ -154,8 +166,6 @@ app.get('*', (req, res, next) => {
   }
 });
 
-app.use("/api", getProfilePictureUrl);
-app.use("/api", appRoutes);
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
