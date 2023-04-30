@@ -42,7 +42,6 @@ function DisplayTourResults() {
       .then(async (data) => {
         const sortedTables = sortTablesByAverageScore(data, tourCount);
         setQueryResults(sortedTables);
-        console.log('END of calling /api/getUserdata | TourView.js')
 
   
         const urls = await Promise.all(
@@ -51,17 +50,19 @@ function DisplayTourResults() {
               const id = winery.winery_id;
               const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
 
-              console.log('components\TourView logoUrl:', logoUrl)
-              console.log('components\TourView id:', id)
-
   
               return { id, url: logoUrl }; // Return the logo URL
             })
           )
         );
+
   
         setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
       })
+
+      console.log('components\TourView logoUrl:', logoUrl)
+      console.log('components\TourView id:', id)
+      
       .catch((err) => {
         console.error(err);
         console.log('components\TourView err:', err)
@@ -69,6 +70,9 @@ function DisplayTourResults() {
 
       });
   }, [tourCount]);
+
+  console.log('END of calling /api/getUserdata | TourView.js')
+
   
 
 

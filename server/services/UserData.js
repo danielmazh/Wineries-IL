@@ -10,6 +10,10 @@ require('dotenv').config();
 
 
 async function userData(storedData) {
+
+  console.log(' log1 \services\UserData.js:', storedData);
+
+
   const queryParams = [];
   // let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = %L AND average_cost_per_person < %L`;
   let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = $1 AND average_cost_per_person < $2`;
@@ -42,19 +46,25 @@ async function userData(storedData) {
   console.log('sqlQuery:', sqlQuery);
 
   return new Promise((resolve, reject) => {
+
     console.log('SQL Query:', sqlQuery); // Add this line
     console.log('Query Params:', queryParams); // Add this line
+
     query(sqlQuery, queryParams, (err, res) => {
 
     // query(format(sqlQuery, ...queryParams), (err, res) => {
 
       if (err) {
+
         console.error(err);
         console.log(err);
+
         reject(err);
       } else {
         const rows = res.rows;
+
         console.log('Raw Rows:', rows); // Add this line
+
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {
           const scores = calculateScore(row, storedData);
@@ -73,6 +83,9 @@ async function userData(storedData) {
             wineries,
           };
         });
+
+        console.log(' log2 \services\UserData.js:', tables);
+
 
         // Return the tables array with grouped and sorted wineries
         resolve(tables);
