@@ -36,7 +36,7 @@ function DisplayTourResults() {
   useEffect(() => {
     console.log('START  fetch /api/getUserdata  ----  components/TourView');
 
-    fetch('/api/userdata')
+    fetch('/api/getUserdata')
       .then((res) => {
         console.log('Received response from /api/getUserdata');
         return res.json();
