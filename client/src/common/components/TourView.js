@@ -20,60 +20,47 @@ import { Box } from '@mui/material'
 
 
 function DisplayTourResults() {
-  const [queryResults, setQueryResults] = useState([]);
-  const [tableIndex, setTableIndex] = useState(0);
-  const storedData = JSON.parse(localStorage.getItem('formData'));
-  const tourCount = storedData.TourCount;
-  const [logoUrls, setLogoUrls] = useState({});
-  
-  // const logger = require('../../clientLogger');
-
-
-  
-
-  const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
+  // ... other code
 
   useEffect(() => {
-    console.log('components/TourView startting to fetch /api/getUserdata')
+    console.log('START  fetch /api/userdata  ----  components/TourView');
 
     fetch('/api/getUserdata')
-      .then((res) => res.json())
-
+      .then((res) => {
+        console.log('Received response from /api/getUserdata');
+        return res.json();
+      })
       .then(async (data) => {
+        console.log('Received data from /api/getUserdata:', data);
         const sortedTables = sortTablesByAverageScore(data, tourCount);
+        console.log('Sorted tables:', sortedTables);
         setQueryResults(sortedTables);
 
-  
         const urls = await Promise.all(
           sortedTables.flatMap((table) =>
             table.wineries.map(async (winery) => {
               const id = winery.winery_id;
               const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
 
-              console.log('components\TourView logoUrl:', logoUrl)
-              console.log('components\TourView id:', id)
-              
+              console.log('components\TourView logoUrl:', logoUrl);
+              console.log('components\TourView id:', id);
+
               return { id, url: logoUrl }; // Return the logo URL
             })
           )
         );
 
-  
+        console.log('Received all logo URLs:', urls);
         setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
       })
-
-
+      
       .catch((err) => {
-        console.error(err);
-        // console.log('components\TourView err:', err)
-        // logger.error('components\\TourView err:', err);
-
-
-
+        console.error('Error occurred during fetch /api/getUserdata:', err);
       });
-  }, [tourCount]);
 
+  }, [tourCount]);
   
+
 
 
   function calculateAverage(wineries, tourCount) {
