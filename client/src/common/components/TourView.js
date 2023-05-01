@@ -34,16 +34,16 @@ function DisplayTourResults() {
   const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
   useEffect(() => {
-    console.log('START  fetch /api/getUserdata  ----  components/TourView');
+    console.log('START  fetch api.getUserdata  ----  components.TourView');
 
-    fetch('/api/getUserdata')
+    fetch('api.getUserdata')
       .then((res) => {
-        console.log('Received response from /api/getUserdata');
+        console.log('Received response from api.getUserdata');
         return res.json();
       })
 
       .then(async (data) => {
-        console.log('Received data from /api/getUserdata:', data);
+        console.log('Received data from api.getUserdata:', data);
         const sortedTables = sortTablesByAverageScore(data, tourCount);
         console.log('Sorted tables:', sortedTables);
         setQueryResults(sortedTables);
@@ -54,8 +54,8 @@ function DisplayTourResults() {
               const id = winery.winery_id;
               const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
 
-              console.log('components\TourView logoUrl:', logoUrl);
-              console.log('components\TourView id:', id);
+              console.log('components.TourView logoUrl:', logoUrl);
+              console.log('components.TourView id:', id);
 
               return { id, url: logoUrl }; // Return the logo URL
             })
@@ -66,7 +66,7 @@ function DisplayTourResults() {
         setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
       })
       .catch((err) => {
-        console.error('Error occurred during fetch /api/getUserdata:', err);
+        console.error('Error occurred during fetch api.getUserdata:', err);
       });
   }, [tourCount]);
 
