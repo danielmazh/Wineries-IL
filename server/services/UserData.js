@@ -169,12 +169,11 @@ async function userData(storedData) {
 
       if (err) {
         console.error(err);
-
         reject(err);
+
       } else {
         const rows = res.rows;
-
-        console.log('Raw Rows:', rows);
+        // console.log('Raw Rows:', rows);
 
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {
@@ -195,12 +194,13 @@ async function userData(storedData) {
           };
         });
 
-        console.log(' log2 \services\UserData.js:', tables);
-
-
         // Return the tables array with grouped and sorted wineries
         resolve(tables);
       }
+
+      console.log('Raw Rows:', rows);
+      console.log('tables:', tables);
+
     });
   });
 }
