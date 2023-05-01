@@ -137,28 +137,28 @@ async function userData(storedData) {
   ];
   
   // Generate conditions for time ranges and the selected day
-  // const conditions = [];
-  // for (const timeRange of timeRanges) {
-  //   if (storedData[timeRange.name]) {
-  //     conditions.push(`($3 BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
-  //     queryParams.push(timeRange.range[0]);
-  //   }
-  // }
-
-  // if (conditions.length > 0) {
-  //   sqlQuery += ` AND (${conditions.join(' OR ')})`;
-  // }
-
-  const conditions = timeRanges
-  .filter(timeRange => storedData[timeRange.name])
-  .map(timeRange => {
-    queryParams.push(timeRange.range[0]);
-    return `($${queryParams.length} BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`;
-  });
+  const conditions = [];
+  for (const timeRange of timeRanges) {
+    if (storedData[timeRange.name]) {
+      conditions.push(`($3 BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
+      queryParams.push(timeRange.range[0]);
+    }
+  }
 
   if (conditions.length > 0) {
     sqlQuery += ` AND (${conditions.join(' OR ')})`;
   }
+
+  // const conditions = timeRanges
+  // .filter(timeRange => storedData[timeRange.name])
+  // .map(timeRange => {
+  //   queryParams.push(timeRange.range[0]);
+  //   return `($${queryParams.length} BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`;
+  // });
+
+  // if (conditions.length > 0) {
+  //   sqlQuery += ` AND (${conditions.join(' OR ')})`;
+  // }
 
 
 
@@ -167,23 +167,18 @@ async function userData(storedData) {
 
   return new Promise((resolve, reject) => {
 
-    console.log('SQL Query:', sqlQuery); // Add this line
-    console.log('Query Params:', queryParams); // Add this line
-
     query(sqlQuery, queryParams, (err, res) => {
 
     // query(format(sqlQuery, ...queryParams), (err, res) => {
 
       if (err) {
-
         console.error(err);
-        console.log(err);
 
         reject(err);
       } else {
         const rows = res.rows;
 
-        console.log('Raw Rows:', rows); // Add this line
+        console.log('Raw Rows:', rows);
 
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {
