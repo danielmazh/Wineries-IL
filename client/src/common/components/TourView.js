@@ -38,7 +38,6 @@ function DisplayTourResults() {
     // console.log('START of calling /api/getUserdata | TourView.js')
     
     logger.info('START of calling /api/getUserdata | TourView.js');
-    logger.info('Fetching user data', { route: '/api/getUserdata' });
     fetch('/api/getUserdata')
       .then((res) => res.json())
 
