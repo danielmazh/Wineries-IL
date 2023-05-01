@@ -26,8 +26,7 @@ function DisplayTourResults() {
   const tourCount = storedData.TourCount;
   const [logoUrls, setLogoUrls] = useState({});
   
-  const logger = require('../../clientLogger');
-// const logger = require('logger');
+  // const logger = require('../../clientLogger');
 
 
   
@@ -35,16 +34,14 @@ function DisplayTourResults() {
   const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
   useEffect(() => {
-    // console.log('START of calling /api/getUserdata | TourView.js')
+    console.log('components/TourView startting to fetch /api/getUserdata')
     
-    logger.info('START of calling /api/getUserdata | TourView.js');
     fetch('/api/getUserdata')
       .then((res) => res.json())
 
       .then(async (data) => {
         const sortedTables = sortTablesByAverageScore(data, tourCount);
         setQueryResults(sortedTables);
-        console.log('END of calling /api/getUserdata | TourView.js')
 
   
         const urls = await Promise.all(
@@ -67,9 +64,9 @@ function DisplayTourResults() {
 
 
       .catch((err) => {
-        // console.error(err);
+        console.error(err);
         // console.log('components\TourView err:', err)
-        logger.error('components\\TourView err:', err);
+        // logger.error('components\\TourView err:', err);
 
 
 
