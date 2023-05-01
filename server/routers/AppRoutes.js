@@ -50,8 +50,7 @@ const router = express.Router();
 const { upload } = require('../views/WineryAdd');
 const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
-// const logger = require('../../logger');
-const logger = require('logger');
+const logger = require('../../logger');
 
 // Middleware to log incoming requests
 router.use((req, res, next) => {

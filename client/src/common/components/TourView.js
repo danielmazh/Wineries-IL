@@ -26,8 +26,8 @@ function DisplayTourResults() {
   const tourCount = storedData.TourCount;
   const [logoUrls, setLogoUrls] = useState({});
   
-  // const logger = require('../../../../logger');
-const logger = require('logger');
+  const logger = require('../../../clientLogger');
+// const logger = require('logger');
 
 
   
