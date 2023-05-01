@@ -1266,8 +1266,6 @@ async function handleFormSubmit  (event)  {
 
   try {
 
-    console.log('START  fetch /api/userdata  ----  \components\QuestionnaireForm ');
-
     const response = await fetch("/api/userdata", {
       method: "POST",
       headers: {
@@ -1290,8 +1288,6 @@ async function handleFormSubmit  (event)  {
     console.error('Error submitting FormData:', error);
     console.error('Response from server:', error.response);
   }
-
-  console.log('END  fetch /api/userdata  ----  \components\QuestionnaireForm ');
 
 };
 
