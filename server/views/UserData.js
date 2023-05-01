@@ -89,3 +89,7 @@ async function getUserData(req, res) {
   }
 }
 
+module.exports = {
+  userData, getUserData
+};
+
