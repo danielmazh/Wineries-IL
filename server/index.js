@@ -131,6 +131,7 @@ app.use(require('body-parser').json());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use('/userProfile', express.static(path.join(__dirname, '../client/src/assets/profile/userProfile')));
 
+app.use("/api", appRoutes);
 
 
 // Handle GET requests to /api route
@@ -142,7 +143,7 @@ app.get('/verify-email/:token', verifyEmail);
 
 
 app.use("/api", getProfilePictureUrl);
-app.use("/api", appRoutes);
+// app.use("/api", appRoutes);
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
