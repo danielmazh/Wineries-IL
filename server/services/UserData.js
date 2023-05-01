@@ -172,8 +172,9 @@ async function userData(storedData) {
         reject(err);
 
       } else {
+        console.log('HELLO')
         const rows = res.rows;
-        // console.log('Raw Rows:', rows);
+        console.log('Rows:', rows);
 
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {

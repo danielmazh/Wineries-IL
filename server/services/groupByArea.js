@@ -34,8 +34,12 @@ function groupAndSortByArea(sortedRows) {
       if (!areaGroups[area]) {
         areaGroups[area] = [];
       }
-  
+
+      
+
       areaGroups[area].push(winery);
+
+      console.log('areaGroups', areaGroups);
       // Uncomment the following line if you want to sort the wineries by their score within each group again
       // areaGroups[area].sort((a, b) => b.weightedScore - a.weightedScore);
     }
