@@ -20,7 +20,18 @@ import { Box } from '@mui/material'
 
 
 function DisplayTourResults() {
-  // ... other code
+  const [queryResults, setQueryResults] = useState([]);
+  const [tableIndex, setTableIndex] = useState(0);
+  const storedData = JSON.parse(localStorage.getItem('formData'));
+  const tourCount = storedData.TourCount;
+  const [logoUrls, setLogoUrls] = useState({});
+  
+  // const logger = require('../../clientLogger');
+
+
+  
+
+  const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
   useEffect(() => {
     console.log('START  fetch /api/userdata  ----  components/TourView');
@@ -53,14 +64,14 @@ function DisplayTourResults() {
         console.log('Received all logo URLs:', urls);
         setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
       })
-      
       .catch((err) => {
         console.error('Error occurred during fetch /api/getUserdata:', err);
       });
-
   }, [tourCount]);
+
   
 
+  
 
 
   function calculateAverage(wineries, tourCount) {
