@@ -38,7 +38,13 @@ function DisplayTourResults() {
 
     fetch('api.getUserdata')
       .then((res) => {
-        console.log('Received response from api.getUserdata');
+        console.log('Received response from api.getUserdata', res);
+        console.log('Response status:', res.status);
+        console.log('Response status text:', res.statusText);
+        console.log('Response URL:', res.url);
+        console.log('Response type:', res.type);
+        console.log('Response headers:', Array.from(res.headers.entries()));
+
         return res.json();
       })
 
@@ -54,8 +60,7 @@ function DisplayTourResults() {
               const id = winery.winery_id;
               const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
 
-              console.log('components.TourView logoUrl:', logoUrl);
-              console.log('components.TourView id:', id);
+              console.log('components.TourView logoUrl:',id, logoUrl);
 
               return { id, url: logoUrl }; // Return the logo URL
             })
@@ -65,6 +70,8 @@ function DisplayTourResults() {
         console.log('Received all logo URLs:', urls);
         setLogoUrls(Object.fromEntries(urls.map(({ id, url }) => [id, url])));
       })
+
+
       .catch((err) => {
         console.error('Error occurred during fetch api.getUserdata:', err);
       });
