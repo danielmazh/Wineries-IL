@@ -22,10 +22,18 @@ const log = (level, message) => {
     }
   };
   
-  module.exports = {
-    info: (message) => log('info', message),
-    error: (message) => log('error', message),
-    warn: (message) => log('warn', message),
-    debug: (message) => log('debug', message),
-  };
+  // module.exports = {
+  //   info: (message) => log('info', message),
+  //   error: (message) => log('error', message),
+  //   warn: (message) => log('warn', message),
+  //   debug: (message) => log('debug', message),
+  // };
+
+export default {
+  info: (message) => log('info', message),
+  error: (message) => log('error', message),
+  warn: (message) => log('warn', message),
+  debug: (message) => log('debug', message),
+};
+
   
