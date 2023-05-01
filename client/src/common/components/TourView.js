@@ -34,14 +34,14 @@ function DisplayTourResults() {
   const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
   useEffect(() => {
-    console.log('START  fetch /api/userdata  ----  components/TourView');
+    console.log('START  fetch /api/getUserdata  ----  components/TourView');
 
-    fetch('/api/getUserdata')
+    fetch('/api/userdata')
       .then((res) => {
         console.log('Received response from /api/getUserdata');
         return res.json();
       })
-      
+
       .then(async (data) => {
         console.log('Received data from /api/getUserdata:', data);
         const sortedTables = sortTablesByAverageScore(data, tourCount);
