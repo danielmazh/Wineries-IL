@@ -1290,9 +1290,11 @@ async function handleFormSubmit  (event)  {
     console.error('Error submitting FormData:', error);
     console.error('Response from server:', error.response);
   }
+
+  console.log('END  fetch /api/userdata  ----  \components\QuestionnaireForm ');
+
 };
 
-console.log('END  fetch /api/userdata  ----  \components\QuestionnaireForm ');
 
 
   // ********** Buttons **********
