@@ -126,6 +126,7 @@ const authenticateJWT = (req, res, next) => {
   }
 };
 
+
 app.use(express.json());
 app.use(require('body-parser').json());
 app.use(require('body-parser').urlencoded({ extended: true }));
