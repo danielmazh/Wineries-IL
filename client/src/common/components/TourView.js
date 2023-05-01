@@ -35,7 +35,7 @@ function DisplayTourResults() {
 
   useEffect(() => {
     console.log('components/TourView startting to fetch /api/getUserdata')
-    
+
     fetch('/api/getUserdata')
       .then((res) => res.json())
 
@@ -99,7 +99,7 @@ function DisplayTourResults() {
 
   const currentTable = queryResults[tableIndex];
 
-  console.log('components\TourView currentTable:', currentTable)
+  // console.log('components\TourView currentTable:', currentTable)
 
 
   return (

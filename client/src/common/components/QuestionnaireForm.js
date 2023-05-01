@@ -1265,6 +1265,9 @@ async function handleFormSubmit  (event)  {
 
 
   try {
+
+    console.log('START  fetch /api/userdata  ----  \components\QuestionnaireForm ');
+
     const response = await fetch("/api/userdata", {
       method: "POST",
       headers: {
@@ -1272,6 +1275,8 @@ async function handleFormSubmit  (event)  {
       },
       body: JSON.stringify(storedData)
     });
+
+    console.log('Was send to server  [JSON]:', JSON.stringify(storedData));
     console.log('Response from server:', response);
 
     if (response.ok) {
@@ -1286,6 +1291,8 @@ async function handleFormSubmit  (event)  {
     console.error('Response from server:', error.response);
   }
 };
+
+console.log('END  fetch /api/userdata  ----  \components\QuestionnaireForm ');
 
 
   // ********** Buttons **********
