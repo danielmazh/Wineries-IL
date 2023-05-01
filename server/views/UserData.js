@@ -26,18 +26,16 @@ async function getUserData(req, res) {
     const storedData = UserDataService.storedFormData; // Get the stored form data
     const results = await UserDataService.userData(storedData); // Use the form data to fetch query results
 
-
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(results));
     // res.json(results); 
-
   } catch (err) {
-    console.error(err);
-    console.log('ERROR2 \views\UserData.js:', err);
-    res.status(500).send("Error confirming FormData");
+    console.error('Error in getUserData  ------  \views\UserData:', err);
+    res.status(500).send("Internal Server Error");
   }
 }
 
 module.exports = {
-  userData , getUserData
+  userData, getUserData
 };
+
