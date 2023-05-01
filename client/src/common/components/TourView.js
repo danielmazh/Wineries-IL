@@ -6,7 +6,6 @@ import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import FindReplaceIcon from '@mui/icons-material/FindReplace';
 import { Button, Tooltip } from '@mui/material';
 
-
 // import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
@@ -15,14 +14,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import WineBarIcon from '@mui/icons-material/WineBar';
 
-
-
-
 import Stack from '@mui/material/Stack';
-
-
-
 import { Box } from '@mui/material'
+
+
 
 function DisplayTourResults() {
   const [queryResults, setQueryResults] = useState([]);
@@ -30,13 +25,19 @@ function DisplayTourResults() {
   const storedData = JSON.parse(localStorage.getItem('formData'));
   const tourCount = storedData.TourCount;
   const [logoUrls, setLogoUrls] = useState({});
+  const logger = require('../../../../logger');
+
 
   
 
   const supportedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
 
   useEffect(() => {
-    console.log('START of calling /api/getUserdata | TourView.js')
+    // console.log('START of calling /api/getUserdata | TourView.js')
+    logger.info('START of calling /api/getUserdata | TourView.js');
+
+
+    logger.info('Fetching user data', { route: '/api/getUserdata' });
     fetch('/api/getUserdata')
       .then((res) => res.json())
 
@@ -67,7 +68,9 @@ function DisplayTourResults() {
 
       .catch((err) => {
         console.error(err);
-        console.log('components\TourView err:', err)
+        // console.log('components\TourView err:', err)
+        logger.error('components\\TourView err:', err);
+
 
 
       });
