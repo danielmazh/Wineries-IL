@@ -136,29 +136,25 @@ async function userData(storedData) {
     { name: 'TourTimeEvening', range: ['14:00', '16:00'] },
   ];
   
-  // Generate conditions for time ranges and the selected day
-  const conditions = [];
-  for (const timeRange of timeRanges) {
-    if (storedData[timeRange.name]) {
-      conditions.push(`($3 BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
-      queryParams.push(timeRange.range[0]);
-    }
-  }
-
-  if (conditions.length > 0) {
-    sqlQuery += ` AND (${conditions.join(' OR ')})`;
-  }
-
-  // const conditions = timeRanges
-  // .filter(timeRange => storedData[timeRange.name])
-  // .map(timeRange => {
-  //   queryParams.push(timeRange.range[0]);
-  //   return `($${queryParams.length} BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`;
-  // });
-
-  // if (conditions.length > 0) {
-  //   sqlQuery += ` AND (${conditions.join(' OR ')})`;
+  // // Generate conditions for time ranges and the selected day
+  // const conditions = [];
+  // for (const timeRange of timeRanges) {
+  //   if (storedData[timeRange.name]) {
+  //     conditions.push(`($3 BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
+  //     queryParams.push(timeRange.range[0]);
+  //   }
   // }
+
+    const conditions = timeRanges
+    .filter(timeRange => storedData[timeRange.name])
+    .map(timeRange => {
+      queryParams.push(timeRange.range[0], timeRange.range[1]);
+      return `($${queryParams.length - 1} >= substring(oh_${day} from 1 for 5) AND $${queryParams.length} <= substring(oh_${day} from 7 for 5))`;
+    });
+
+    if (conditions.length > 0) {
+      sqlQuery += ` AND (${conditions.join(' OR ')})`;
+    }
 
 
 
