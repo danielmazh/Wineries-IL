@@ -1,4 +1,4 @@
-clientLogger.js
+// clientLogger.js
 
 const log = (level, message) => {
     if (process.env.NODE_ENV === 'production') {
