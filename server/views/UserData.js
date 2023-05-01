@@ -27,8 +27,12 @@ async function getUserData(req, res) {
     const results = await UserDataService.userData(storedData); // Use the form data to fetch query results
 
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(results));
-    // res.json(results); 
+
+    console.log('This is the result from views\UserData:' ,results)
+    
+    // res.send(JSON.stringify(results));
+    res.json(results); 
+
   } catch (err) {
     console.error('Error in getUserData  ------  \views\UserData:', err);
     res.status(500).send("Internal Server Error");
