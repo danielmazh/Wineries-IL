@@ -36,9 +36,8 @@ function DisplayTourResults() {
 
   useEffect(() => {
     // console.log('START of calling /api/getUserdata | TourView.js')
+    
     logger.info('START of calling /api/getUserdata | TourView.js');
-
-
     logger.info('Fetching user data', { route: '/api/getUserdata' });
     fetch('/api/getUserdata')
       .then((res) => res.json())
@@ -69,7 +68,7 @@ function DisplayTourResults() {
 
 
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         // console.log('components\TourView err:', err)
         logger.error('components\\TourView err:', err);
 
