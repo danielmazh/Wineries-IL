@@ -41,6 +41,7 @@ function DisplayTourResults() {
         console.log('Received response from /api/getUserdata');
         return res.json();
       })
+      
       .then(async (data) => {
         console.log('Received data from /api/getUserdata:', data);
         const sortedTables = sortTablesByAverageScore(data, tourCount);
@@ -69,7 +70,7 @@ function DisplayTourResults() {
       });
   }, [tourCount]);
 
-  
+
 
   
 

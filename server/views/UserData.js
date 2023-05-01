@@ -21,12 +21,13 @@ async function userData(req, res) {
   }
 }
 
-
 async function getUserData(req, res) {
   try {
     const storedData = UserDataService.storedFormData; // Get the stored form data
     const results = await UserDataService.userData(storedData); // Use the form data to fetch query results
 
+
+    res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(results));
     // res.json(results); 
 
@@ -36,10 +37,6 @@ async function getUserData(req, res) {
     res.status(500).send("Error confirming FormData");
   }
 }
-
-
-
-
 
 module.exports = {
   userData , getUserData

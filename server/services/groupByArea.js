@@ -22,7 +22,6 @@
 
 
 // server\services\groupByArea.js
-
 function groupAndSortByArea(sortedRows) {
 
   console.log(' log1 \services\groupByArea.js:', sortedRows);

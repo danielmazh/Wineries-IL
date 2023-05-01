@@ -1,3 +1,4 @@
+// server\services\calculateScore.js
 function calculateScore(row, formData) {
     let totalScore = 0;
     let maxScore = 0;
