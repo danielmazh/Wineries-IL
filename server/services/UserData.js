@@ -221,13 +221,13 @@
 
 
 
+// server\services\UserData.js
+const format = require('pg-format');
+const { query } = require("../db");
+const { calculateScore } = require('./calculateScore');
+const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
 
-
-
-
-
-
-
+require('dotenv').config();
 
 
 async function userData(storedData) {
