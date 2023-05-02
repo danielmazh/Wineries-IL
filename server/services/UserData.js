@@ -352,25 +352,18 @@ function queryBuilder(storedData) {
  * @returns {Promise} Promise with the tables array with grouped and sorted wineries
  */
 async function userData(storedData) {
-  console.log('Start userData function services.UserData');
   console.log('StoredData services.UserData:', storedData);
 
   // Call the queryBuilder function to construct the SQL query
   const formattedSqlQuery = queryBuilder(storedData);
-
   console.log('formattedSqlQuery:', formattedSqlQuery);
 
   return new Promise((resolve, reject) => {
-    console.log('Before executing query');
-
     query(formattedSqlQuery, (err, res) => {
-      console.log('Inside query callback');
-
       if (err) {
         console.error(err);
         reject(err);
       } else {
-        console.log('Query successful');
         const rows = res.rows;
 
         // Apply scoring and sorting
@@ -397,7 +390,6 @@ async function userData(storedData) {
       }
 
     });
-    console.log('After executing query');
   });
 }
 

@@ -75,7 +75,7 @@ async function getUserData(req, res) {
     console.log('getUserData: Stored data:', storedData);
     
     const results = await UserDataService.userData(storedData); // Use the form data to fetch query results
-    console.log('getUserData: Query results:', results);
+    // console.log('getUserData: Query results:', results);
 
     res.setHeader('Content-Type', 'application/json');
     
