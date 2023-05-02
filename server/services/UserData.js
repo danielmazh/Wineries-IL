@@ -396,9 +396,6 @@ async function userData(storedData) {
         resolve(tables);
       }
 
-      console.log('Raw Rows:', rows);
-      console.log('tables:', tables);
-
     });
     console.log('After executing query');
   });
