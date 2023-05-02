@@ -281,10 +281,6 @@ async function userData(storedData) {
         // Return the tables array with grouped and sorted wineries
         resolve(tables);
       }
-
-      console.log('Raw Rows:', rows);
-      console.log('tables:', tables);
-
     });
     console.log('After executing query');
   });
