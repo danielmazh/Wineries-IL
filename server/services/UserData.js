@@ -285,3 +285,8 @@ async function userData(storedData) {
     console.log('After executing query');
   });
 }
+
+
+module.exports = {
+  userData
+};
