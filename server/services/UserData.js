@@ -372,7 +372,6 @@ async function userData(storedData) {
       } else {
         console.log('Query successful');
         const rows = res.rows;
-        console.log('Rows:', rows);
 
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {
