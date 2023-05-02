@@ -234,16 +234,20 @@ async function userData(storedData) {
   console.log('Start userData function services.UserData');
   console.log('StoredData services.UserData:', storedData);
 
-  const queryParams = ['ירושלים', 300, '10:00', '12:00'];
-  let sqlQuery = `SELECT * FROM public.wineries WHERE main_area = $1 AND average_cost_per_person < $2 AND ($3 >= substring(oh_tuesday from 1 for 5) AND $4 <= substring(oh_tuesday from 7 for 5))`;
+  // const queryParams = ['ירושלים', 300, '10:00', '12:00'];
+  // let sqlQuery = `SELECT * FROM public.wineries WHERE main_area = $1 AND average_cost_per_person < $2 AND ($3 >= substring(oh_tuesday from 1 for 5) AND $4 <= substring(oh_tuesday from 7 for 5))`;
+  
+  let sqlQuery = `SELECT * FROM public.wineries`;
 
-  console.log('queryParams:', queryParams);
+
+
+  // console.log('queryParams:', queryParams);
   console.log('sqlQuery:', sqlQuery);
 
   return new Promise((resolve, reject) => {
     console.log('Before executing query');
 
-    query(sqlQuery, queryParams, (err, res) => {
+    query(sqlQuery, (err, res) => {
       console.log('Inside query callback');
 
       if (err) {
