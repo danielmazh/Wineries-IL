@@ -873,17 +873,17 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2} alignItems="center" justifyContent="center">
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
       <h4 style={{textAlign: 'center'}}>עמוד 2 מתוך {totalPages}</h4>
 
 
       <Grid container spacing={2} alignItems="center" justifyContent="center">
-  <Grid item xs={12} sm={6} md={4}>
+  <Grid item xs={6} sm={6} md={4}>
     <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
       {/* ... */}
     </Box>
