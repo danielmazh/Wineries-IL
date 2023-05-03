@@ -699,7 +699,7 @@ function NavBar(props) {
           </Box>
 
           {props.authToken && (
-          <Box sx={{ display: "flex", justifyContent: "flex-start" }}> // Change justifyContent to 'flex-start'
+          <Box sx={{ display: "flex", justifyContent: "flex-start" }}>
             <Tooltip title="הגדרות" >
               <IconButton
                 edge="end"
