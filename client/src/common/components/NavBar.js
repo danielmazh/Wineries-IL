@@ -620,8 +620,8 @@ function NavBar(props) {
 
   const pages = props.authToken
   ? [
-      { name: 'תיכנון סיור', path: `/PersonalZone/${props.authToken}`, icon: <TourIcon /> },
       { name: 'משוב', path: '/survey', icon: <PollIcon /> }, 
+      { name: 'תיכנון סיור', path: `/PersonalZone/${props.authToken}`, icon: <TourIcon /> },
       { name: 'הוספת יקב', path: '/addwinery', icon: <LiquorIcon /> },
       { name: 'בית', path: '/', icon: <HomeIcon /> },
     ]
