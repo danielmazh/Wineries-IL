@@ -621,11 +621,12 @@ function NavBar(props) {
   const pages = props.authToken
   ? [
       { name: 'תיכנון סיור', path: `/PersonalZone/${props.authToken}`, icon: <TourIcon /> },
-      { name: 'משוב', path: '/survey', icon: <PollIcon /> }, // Add this line
+      { name: 'משוב', path: '/survey', icon: <PollIcon /> }, 
       { name: 'הוספת יקב', path: '/addwinery', icon: <LiquorIcon /> },
+      { name: 'בית', path: '/', icon: <HomeIcon /> },
     ]
   : [
-    { name: 'משוב', path: '/survey', icon: <PollIcon /> }, // Add this line
+      { name: 'משוב', path: '/survey', icon: <PollIcon /> }, 
       { name: 'רישום', path: '/signup', icon: <PersonAddIcon /> },
       { name: 'כניסה', path: '/Login', icon: <LoginIcon /> },
       { name: 'בית', path: '/', icon: <HomeIcon /> },
@@ -649,7 +650,7 @@ function NavBar(props) {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-        {props.authToken && (
+          
         <IconButton
           edge="start"
           color="inherit"
@@ -659,7 +660,7 @@ function NavBar(props) {
         >
           <MenuIcon />
         </IconButton>
-        )}
+
 
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
@@ -697,54 +698,57 @@ function NavBar(props) {
           </Box>
 
         {props.authToken && (
-        <Tooltip title="הגדרות" >
-          <IconButton
-            edge="end"
-            color="inherit"
-            aria-label="menu"
-            onClick={handleOpenSettingsMenu}
-          >
-            <UserProfileIcon
-            profilePictureUrl={profilePictureUrl}
-          />
+          <Box sx={{ flexGrow: 1 }}>
+              
+            <Tooltip title="הגדרות" >
+              <IconButton
+                edge="end"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleOpenSettingsMenu}
+              >
+                <UserProfileIcon
+                profilePictureUrl={profilePictureUrl}
+              />
 
-          </IconButton>
-        </Tooltip>
-        )}
-        <Menu 
-          anchorEl={settingsMenuAnchorEl}
-          open={Boolean(settingsMenuAnchorEl)}
-          onClose={handleCloseSettingsMenu}
-          onClick={handleCloseSettingsMenu}
-          PaperProps={{
-            elevation: 0,
-            sx: {
-              overflow: 'visible',
-              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-              mt: 1.5,
-              '& .MuiAvatar-root': {
-                width: 32,
-                height: 32,
-                ml: -0.5,
-                mr: 1,
+              </IconButton>
+            </Tooltip>
+          </Box>
+          )}
+          <Menu 
+            anchorEl={settingsMenuAnchorEl}
+            open={Boolean(settingsMenuAnchorEl)}
+            onClose={handleCloseSettingsMenu}
+            onClick={handleCloseSettingsMenu}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: 'visible',
+                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                mt: 1.5,
+                '& .MuiAvatar-root': {
+                  width: 32,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0,
+                },
               },
-              '&:before': {
-                content: '""',
-                display: 'block',
-                position: 'absolute',
-                top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
-                bgcolor: 'background.paper',
-                transform: 'translateY(-50%) rotate(45deg)',
-                zIndex: 0,
-              },
-            },
-          }}
-          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        >
+            }}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
           <Stack direction="column" spacing={1}>
             {settings.map((item, index) => (
               <Button
