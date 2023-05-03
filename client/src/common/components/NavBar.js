@@ -519,16 +519,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 // client\src\common\components\NavBar.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -546,7 +536,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import Grid from '@mui/material/Grid'; // Add this import
 
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -562,6 +551,9 @@ import PollIcon from '@mui/icons-material/Poll';
 import axios from 'axios';
 
 import NavBarWrapper from './styled-components/NavBarWrapper';
+import Drawer from '@mui/material/Drawer';
+
+
 
 function NavBar(props) {
 
@@ -570,6 +562,13 @@ function NavBar(props) {
   const first_name = localStorage.getItem('first_name');
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+
+
+  const handleMobileMenuToggle = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -640,155 +639,185 @@ function NavBar(props) {
 
   return (
     <NavBarWrapper>
-      <AppBar
-        position="fixed"
-        className="appbar-container"
-        sx={{
-          background:
-            'linear-gradient(90deg, rgba(103,0,20,1) 0%, rgba(178,34,34,1) 100%)',
+    <AppBar
+      position="fixed"
+      className="appbar-container"
+      sx={{
+        background: 'linear-gradient(90deg, rgba(103,0,20,1) 0%, rgba(178,34,34,1) 100%)',
+      }}
+    >
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+
+        {props.authToken && (
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleMobileMenuToggle}
+          sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }}
+        >
+          <MenuIcon />
+        </IconButton>
+        )}
+
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+            {pages.map((page) => (
+              <Button
+  key={page.name}
+  onClick={(e) => {
+    e.preventDefault();
+    handleCloseNavMenu();
+    window.location.href = page.path;
+  }}
+  sx={{
+    my: 1,
+    mx: 1,
+    color: 'white',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 'bold',
+    fontSize: '1.1rem',
+    minWidth: '160px',
+    border: '1px solid transparent',
+    borderRadius: '4px',
+  }}
+  component={Link}
+  to={page.path}
+  startIcon={page.icon}
+>
+  {page.name}
+</Button>
+
+
+            ))}
+          </Box>
+
+        {props.authToken && (
+        <Tooltip title="הגדרות" >
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleOpenSettingsMenu}
+          >
+            <UserProfileIcon
+            profilePictureUrl={profilePictureUrl}
+          />
+
+          </IconButton>
+        </Tooltip>
+        )}
+        <Menu 
+          anchorEl={settingsMenuAnchorEl}
+          open={Boolean(settingsMenuAnchorEl)}
+          onClose={handleCloseSettingsMenu}
+          onClick={handleCloseSettingsMenu}
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: 'visible',
+              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+              mt: 1.5,
+              '& .MuiAvatar-root': {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              '&:before': {
+                content: '""',
+                display: 'block',
+                position: 'absolute',
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: 'background.paper',
+                transform: 'translateY(-50%) rotate(45deg)',
+                zIndex: 0,
+              },
+            },
+          }}
+          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+          <Stack direction="column" spacing={1}>
+            {settings.map((item, index) => (
+              <Button
+                key={index}
+                color="secondary"
+                component={item.path ? Link : 'button'}
+                to={item.path}
+                onClick={item.action}
+              >
+                {item.name}
+              </Button>
+            ))}
+          </Stack>
+        </Menu>
+      </Toolbar>
+    </Container>
+  </AppBar>
+
+  <Drawer
+  anchor="left"
+  open={mobileMenuOpen}
+  onClose={handleMobileMenuToggle}
+  PaperProps={{
+    sx: {
+      width: '250px',
+    },
+  }}
+>
+  <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      p: 2,
+    }}
+  >
+    {pages.map((page) => (
+      <Button
+        key={page.name}
+        onClick={(e) => {
+          e.preventDefault();
+          handleMobileMenuToggle();
+          window.location.href = page.path;
         }}
+        sx={{
+          my: 1,
+          mx: 1,
+          color: 'primary.main',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          fontWeight: 'bold',
+          fontSize: '1.1rem',
+          minWidth: '160px',
+          border: '1px solid transparent',
+          borderRadius: '4px',
+        }}
+        component={Link}
+        to={page.path}
+        startIcon={page.icon}
       >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <Grid container justifyContent="space-between" alignItems="center">
-              <Grid item>
-                {/* Logo */}
-                {props.authToken && (
-                  <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="logo"
-                    component={Link}
-                    to="/"
-                    sx={{
-                      display: { xs: 'none', md: 'flex' },
-                      mr: 2,
-                    }}
-                  >
-                    <img
-                      src={wineriesLogo}
-                      alt="Logo"
-                      style={{
-                        width: '45px',
-                        height: '45px',
-                        borderRadius: '50%',
-                        border: '2px solid #ffffff',
-                      }}
-                    />
-                  </IconButton>
-                )}
-              </Grid>
-              <Grid item xs={12} md={6}>
-                {/* Navbar items */}
-                <Box
-                  sx={{
-                    flexGrow: 1,
-                    display: 'flex',
-                    justifyContent: { xs: 'center', md: 'space-between' },
-                    flexWrap: 'wrap',
-                  }}
-                >
-                  {pages.map((page) => (
-                    <Button
-                      key={page.name}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleCloseNavMenu();
-                        window.location.href = page.path;
-                      }}
-                      sx={{
-                        my: 1,
-                        mx: 1,
-                        color: 'white',
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontWeight: 'bold',
-                        fontSize: '1.1rem',
-                        minWidth: '160px',
-                        border: '1px solid transparent',
-                        borderRadius: '4px',
-                      }}
-                      component={Link}
-                      to={page.path}
-                      startIcon={page.icon}
-                    >
-                      {page.name}
-                    </Button>
-                  ))}
-                </Box>
-              </Grid>
-              <Grid item>
-                {/* User settings */}
-                {props.authToken && (
-                  <Tooltip title="הגדרות">
-                    <IconButton
-                      edge="end"
-                      color="inherit"
-                      aria-label="menu"
-                      onClick={handleOpenSettingsMenu}
-                    >
-                      <UserProfileIcon
-                        profilePictureUrl={profilePictureUrl}
-                      />
-                    </IconButton>
-                  </Tooltip>
-                )}
-                <Menu
-                  anchorEl={settingsMenuAnchorEl}
-                  open={Boolean(settingsMenuAnchorEl)}
-                  onClose={handleCloseSettingsMenu}
-                  onClick={handleCloseSettingsMenu}
-                  PaperProps={{
-                    elevation: 0,
-                    sx: {
-                      overflow: 'visible',
-                      filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                      mt: 1.5,
-                      '& .MuiAvatar-root': {
-                        width: 32,
-                        height: 32,
-                        ml: -0.5,
-                        mr: 1,
-                      },
-                      '&:before': {
-                        content: '""',
-                        display: 'block',
-                        position: 'absolute',
-                        top: 0,
-                        right: 14,
-                        width: 10,
-                        height: 10,
-                        bgcolor: 'background.paper',
-                        transform: 'translateY(-50%) rotate(45deg)',
-                        zIndex: 0,
-                      },
-                    },
-                  }}
-                  transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                >
-                  <Stack direction="column" spacing={1}>
-                    {settings.map((item, index) => (
-                      <Button
-                        key={index}
-                        color="secondary"
-                        component={item.path ? Link : 'button'}
-                        to={item.path}
-                        onClick={item.action}
-                      >
-                        {item.name}
-                      </Button>
-                    ))}
-                  </Stack>
-                </Menu>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </NavBarWrapper>
+        {page.name}
+      </Button>
+    ))}
+  </Box>
+</Drawer>
+
+
+
+  </NavBarWrapper>
+
   );
 }
 
