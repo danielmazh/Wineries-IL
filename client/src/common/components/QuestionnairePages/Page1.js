@@ -1,3 +1,4 @@
+// client\src\common\components\QuestionnairePages\Page1.js
 import React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -15,19 +16,13 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import WbTwilightIcon from '@mui/icons-material/WbTwilight'; 
 import NightsStayIcon from '@mui/icons-material/NightsStay';
 import AccessibleIcon from '@mui/icons-material/Accessible';
- 
-
-
 
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-
 import hebrewLocale from 'date-fns/locale/he';
 
-
-
-
+import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
 
 
 
@@ -41,6 +36,7 @@ const Page1 = ({
 
 
   return (
+    <ResponsiveWrapper>
     <div style={{ direction: 'rtl', textAlign: 'right' }}>
       <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1>
 
@@ -65,7 +61,6 @@ const Page1 = ({
 
       <br />
       <br />
-
 
         <InputLabel htmlFor="selectedDate">בחרו תאריך לסיור היין שלכם</InputLabel>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={heLocale}>
@@ -187,7 +182,6 @@ const Page1 = ({
       <br />
       <br />
 
-
       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
         <Box display="flex" alignItems="center">
           <InputLabel style={{ marginRight: '10px' }}>תקציב רצוי לאדם</InputLabel>
@@ -227,25 +221,11 @@ const Page1 = ({
           />
         </Box>
 
-
         {validation.BudgetRange && <div className="error">{validation.BudgetRange}</div>}
       </div>
 
       <br />
       <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -263,14 +243,13 @@ const Page1 = ({
         </div>
       </div>
 
-
-
   </div>
 
   <br />
   <br />
 
   </div>
+  </ResponsiveWrapper>
   );
 };
 
