@@ -14,6 +14,7 @@ function App() {
       .then((data) => setData(data.message));
   }, []);
 
+  
   return (
     <div className="App">
       <NavBar authToken={authToken} />

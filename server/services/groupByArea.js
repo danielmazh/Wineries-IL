@@ -21,8 +21,11 @@
 // };
 
 
-
+// server\services\groupByArea.js
 function groupAndSortByArea(sortedRows) {
+
+  console.log(' log1 \services\groupByArea.js:', sortedRows);
+
     const areaGroups = {};
   
     for (const winery of sortedRows) {
@@ -31,12 +34,19 @@ function groupAndSortByArea(sortedRows) {
       if (!areaGroups[area]) {
         areaGroups[area] = [];
       }
-  
+
+      
+
       areaGroups[area].push(winery);
+
+      console.log('areaGroups', areaGroups);
       // Uncomment the following line if you want to sort the wineries by their score within each group again
       // areaGroups[area].sort((a, b) => b.weightedScore - a.weightedScore);
     }
-  
+
+
+    console.log(' log2 \services\groupByArea.js:', areaGroups);
+
     return areaGroups;
   }
   

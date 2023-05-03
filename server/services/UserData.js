@@ -1,112 +1,27 @@
-// const sqlite3 = require('sqlite3').verbose();
-// const db = new sqlite3.Database('./server/SQL/wineries.db');
-// const { calculateScore } = require('./calculateScore');
-// const groupAndSortByArea = require('./groupByArea').groupAndSortByArea; // Import the groupAndSortByArea function
-
-
-// async function userData(storedData) {
-//   console.log('FormData received on server:', storedData);
-
-//   // Base query
-//   let query = `SELECT * FROM wineries WHERE main_area = ? AND average_cost_per_person < ?`;
-//   const queryParams = [storedData.TourArea, storedData.BudgetRange];
-//   console.log('storedData.BudgetRange:', storedData.BudgetRange);
-
-//   const selectedDate = new Date(storedData.selectedDate);
-//   const day = selectedDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
-//   console.log('day recieved:', day);
-
-//   const timeRanges = [
-//     { name: 'TourTimeMorning', range: ['10:00', '12:00'] },
-//     { name: 'TourTimeAfternoon', range: ['12:00', '14:00'] },
-//     { name: 'TourTimeEvening', range: ['14:00', '16:00'] },
-//   ];
-
-//   // Generate conditions for time ranges and the selected day
-//   const conditions = [];
-//   for (const timeRange of timeRanges) {
-//     if (storedData[timeRange.name]) {
-//       console.log('timeRange.name:', timeRange.name);
-//       conditions.push(`(time(?) >= time(substr(oh_${day}, 1, 5)) AND time(?) <= time(substr(oh_${day}, 7, 5)))`);
-//       queryParams.push(...timeRange.range);
-//     }
-//   }
-
-//   if (conditions.length > 0) {
-//     query += ` AND (${conditions.join(' OR ')})`;
-//   }
-//   console.log('query:', query);
-//   console.log('conditions:', conditions);
-//   console.log('queryParams:', queryParams);
-
-//   return new Promise((resolve, reject) => {
-//     db.serialize(() => {
-//       db.all(query, queryParams, (err, rows) => {
-//         if (err) {
-//           console.error(err);
-//           reject(err);
-//         } else {
-//           // Apply scoring and sorting
-//           const scoredRows = rows.map(row => {
-//             const scores = calculateScore(row, storedData);
-//             return { ...row, scores, weightedScore: scores.weightedScore };
-//           });
-
-//           const sortedRows = scoredRows.sort((a, b) => b.weightedScore - a.weightedScore);
-
-//           // Group the sorted rows by secondary area
-//           const groupedWineries = groupAndSortByArea(sortedRows);
-
-//           // Convert the groupedWineries object to an array of tables
-//           const tables = Object.entries(groupedWineries).map(([area, wineries]) => {
-//             return {
-//               area,
-//               wineries,
-//             };
-//           });
-
-//           // Return the tables array with grouped and sorted wineries
-//           resolve(tables);
-//         }
-//       });
-//     });
-//   });
-//   }
-
-//   module.exports = {
-//   userData
-//   };
-
-
-
-
-
-// *********************************************************************************************************************
-// *********************************************************************************************************************
-// *********************************************************************************************************************
-// *********************************************************************************************************************
-// *********************************************************************************************************************
-// *********************************************************************************************************************
-
-
+// // server\services\UserData.js
 
 // const format = require('pg-format');
 // const { query } = require("../db");
 
 // const { calculateScore } = require('./calculateScore');
-// const groupAndSortByArea = require('./groupByArea').groupAndSortByArea; // Import the groupAndSortByArea function
+// const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
+
+// require('dotenv').config();
+
 
 // async function userData(storedData) {
-//   // console.log('FormData received on server:', storedData);
+
+//   console.log(' log1 \services\UserData.js:', storedData);
+
 
 //   const queryParams = [];
-//   let sqlQuery = `SELECT * FROM wineries WHERE main_area = %L AND average_cost_per_person < %L`;
+//   // let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = %L AND average_cost_per_person < %L`;
+//   let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = $1 AND average_cost_per_person < $2`;
+
 //   queryParams.push(storedData.TourArea, storedData.BudgetRange);
-//   // console.log('storedData.BudgetRange:', storedData.BudgetRange);
 
 //   const selectedDate = new Date(storedData.selectedDate);
 //   const day = selectedDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
-//   // console.log('day received:', day);
 
 //   const timeRanges = [
 //     { name: 'TourTimeMorning', range: ['10:00', '12:00'] },
@@ -118,12 +33,8 @@
 //   const conditions = [];
 //   for (const timeRange of timeRanges) {
 //     if (storedData[timeRange.name]) {
-//       // console.log('timeRange.name:', timeRange.name);
-//       // Use the correct substring syntax for PostgreSQL
-//       conditions.push(`(time %L::time >= time(substring(oh_${day} from 1 for 5)) AND time %L::time <= time(substring(oh_${day} from 7 for 5)))`);
-//       queryParams.push(...timeRange.range);
-
-//       // console.log('timeRange.range:', timeRange.range);
+//       conditions.push(`(%L BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
+//       queryParams.push(timeRange.range[0]);
 //     }
 //   }
 
@@ -131,20 +42,225 @@
 //     sqlQuery += ` AND (${conditions.join(' OR ')})`;
 //   }
 
-//   console.log('sqlQuery:', sqlQuery);
 //   console.log('queryParams:', queryParams);
-
-
-//   // console.log('conditions:', conditions);
-
+//   console.log('sqlQuery:', sqlQuery);
 
 //   return new Promise((resolve, reject) => {
-//     query(format(sqlQuery, ...queryParams), (err, res) => {
+
+//     console.log('SQL Query:', sqlQuery); // Add this line
+//     console.log('Query Params:', queryParams); // Add this line
+
+//     query(sqlQuery, queryParams, (err, res) => {
+
+//     // query(format(sqlQuery, ...queryParams), (err, res) => {
+
 //       if (err) {
+
 //         console.error(err);
+//         console.log(err);
+
 //         reject(err);
 //       } else {
 //         const rows = res.rows;
+
+//         console.log('Raw Rows:', rows); // Add this line
+
+//         // Apply scoring and sorting
+//         const scoredRows = rows.map(row => {
+//           const scores = calculateScore(row, storedData);
+//           return { ...row, scores, weightedScore: scores.weightedScore };
+//         });
+
+//         const sortedRows = scoredRows.sort((a, b) => b.weightedScore - a.weightedScore);
+
+//         // Group the sorted rows by secondary area
+//         const groupedWineries = groupAndSortByArea(sortedRows);
+
+//         // Convert the groupedWineries object to an array of tables
+//         const tables = Object.entries(groupedWineries).map(([area, wineries]) => {
+//           return {
+//             area,
+//             wineries,
+//           };
+//         });
+
+//         console.log(' log2 \services\UserData.js:', tables);
+
+
+//         // Return the tables array with grouped and sorted wineries
+//         resolve(tables);
+//       }
+//     });
+//   });
+// }
+
+// module.exports = {
+//   userData
+// };
+
+
+
+
+
+
+
+
+
+
+
+// // server\services\UserData.js
+// const format = require('pg-format');
+// const { query } = require("../db");
+// const { calculateScore } = require('./calculateScore');
+// const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
+
+// require('dotenv').config();
+
+
+// async function userData(storedData) {
+//   console.log('Start userData function services.UserData');
+//   console.log('StoredData services.UserData:', storedData);
+
+//   const queryParams = [];
+//   let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = $1 AND average_cost_per_person < $2`;
+  
+//   queryParams.push(storedData.TourArea, storedData.BudgetRange);
+
+//   const selectedDate = new Date(storedData.selectedDate);
+//   const day = selectedDate.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+
+//   const timeRanges = [
+//     { name: 'TourTimeMorning', range: ['10:00', '12:00'] },
+//     { name: 'TourTimeAfternoon', range: ['12:00', '14:00'] },
+//     { name: 'TourTimeEvening', range: ['14:00', '16:00'] },
+//   ];
+  
+//   // // Generate conditions for time ranges and the selected day
+//   // const conditions = [];
+//   // for (const timeRange of timeRanges) {
+//   //   if (storedData[timeRange.name]) {
+//   //     conditions.push(`($3 BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
+//   //     queryParams.push(timeRange.range[0]);
+//   //   }
+//   // }
+
+//     const conditions = timeRanges
+//     .filter(timeRange => storedData[timeRange.name])
+//     .map(timeRange => {
+//       queryParams.push(timeRange.range[0], timeRange.range[1]);
+//       return `($${queryParams.length - 1} >= substring(oh_${day} from 1 for 5) AND $${queryParams.length} <= substring(oh_${day} from 7 for 5))`;
+//     });
+
+//     if (conditions.length > 0) {
+//       sqlQuery += ` AND (${conditions.join(' OR ')})`;
+//     }
+
+
+
+//   console.log('queryParams:', queryParams);
+//   console.log('sqlQuery:', sqlQuery);
+
+//   return new Promise((resolve, reject) => {
+//     console.log('Before executing query');
+
+//     query(sqlQuery, queryParams, (err, res) => {
+//       console.log('Inside query callback');
+
+
+//     // query(format(sqlQuery, ...queryParams), (err, res) => {
+
+//       if (err) {
+//         console.error(err);
+//         reject(err);
+
+//       } else {
+//         console.log('Query successful');
+//         const rows = res.rows;
+//         console.log('Rows:', rows);
+
+//         // Apply scoring and sorting
+//         const scoredRows = rows.map(row => {
+//           const scores = calculateScore(row, storedData);
+//           return { ...row, scores, weightedScore: scores.weightedScore };
+//         });
+
+//         const sortedRows = scoredRows.sort((a, b) => b.weightedScore - a.weightedScore);
+
+//         // Group the sorted rows by secondary area
+//         const groupedWineries = groupAndSortByArea(sortedRows);
+
+//         // Convert the groupedWineries object to an array of tables
+//         const tables = Object.entries(groupedWineries).map(([area, wineries]) => {
+//           return {
+//             area,
+//             wineries,
+//           };
+//         });
+
+//         // Return the tables array with grouped and sorted wineries
+//         resolve(tables);
+//       }
+
+//       console.log('Raw Rows:', rows);
+//       console.log('tables:', tables);
+
+//     });
+//     console.log('After executing query');
+//   });
+// }
+
+// module.exports = {
+//   userData
+// };
+
+
+
+
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////
+// This is a working version of the userData function!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// //////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// // server\services\UserData.js
+// const format = require('pg-format');
+// const { query } = require("../db");
+// const { calculateScore } = require('./calculateScore');
+// const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
+
+// require('dotenv').config();
+
+
+// async function userData(storedData) {
+//   console.log('Start userData function services.UserData');
+//   console.log('StoredData services.UserData:', storedData);
+
+//   // const queryParams = ['ירושלים', 300, '10:00', '12:00'];
+//   // let sqlQuery = `SELECT * FROM public.wineries WHERE main_area = $1 AND average_cost_per_person < $2 AND ($3 >= substring(oh_tuesday from 1 for 5) AND $4 <= substring(oh_tuesday from 7 for 5))`;
+  
+//   let sqlQuery = `SELECT * FROM public.wineries`;
+
+
+
+//   // console.log('queryParams:', queryParams);
+//   console.log('sqlQuery:', sqlQuery);
+
+//   return new Promise((resolve, reject) => {
+//     console.log('Before executing query');
+
+//     query(sqlQuery, (err, res) => {
+//       console.log('Inside query callback');
+
+//       if (err) {
+//         console.error(err);
+//         reject(err);
+
+//       } else {
+//         console.log('Query successful');
+//         const rows = res.rows;
+//         console.log('Rows:', rows);
+
 //         // Apply scoring and sorting
 //         const scoredRows = rows.map(row => {
 //           const scores = calculateScore(row, storedData);
@@ -168,64 +284,40 @@
 //         resolve(tables);
 //       }
 //     });
+//     console.log('After executing query');
 //   });
 // }
+
 
 // module.exports = {
 //   userData
 // };
 
 
+// //////////////////////////////////////////////////////////////////////////////////////////////
+// This is END of working version of the userData function!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// //////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// server\services\UserData.js
 const format = require('pg-format');
 const { query } = require("../db");
-
 const { calculateScore } = require('./calculateScore');
 const groupAndSortByArea = require('./groupByArea').groupAndSortByArea;
 
 require('dotenv').config();
 
-
-async function userData(storedData) {
+/**
+ * Function responsible for the syntactic construction of the query.
+ * @param {object} storedData
+ * @returns {string} The constructed SQL query with parameters included
+ */
+function queryBuilder(storedData) {
   const queryParams = [];
-  let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = %L AND average_cost_per_person < %L`;
+  let sqlQuery = `SELECT * FROM ${process.env.TABLE_NAME}.wineries WHERE main_area = '%s' AND average_cost_per_person < %s`;
+  
   queryParams.push(storedData.TourArea, storedData.BudgetRange);
 
   const selectedDate = new Date(storedData.selectedDate);
@@ -236,30 +328,44 @@ async function userData(storedData) {
     { name: 'TourTimeAfternoon', range: ['12:00', '14:00'] },
     { name: 'TourTimeEvening', range: ['14:00', '16:00'] },
   ];
-  
-  // Generate conditions for time ranges and the selected day
-  const conditions = [];
-  for (const timeRange of timeRanges) {
-    if (storedData[timeRange.name]) {
-      conditions.push(`(%L BETWEEN substring(oh_${day} from 1 for 5) AND substring(oh_${day} from 7 for 5))`);
-      queryParams.push(timeRange.range[0]);
-    }
-  }
+
+  const conditions = timeRanges
+    .filter(timeRange => storedData[timeRange.name])
+    .map(timeRange => {
+      queryParams.push(timeRange.range[0], timeRange.range[1]);
+      return `('%s' >= substring(oh_${day} from 1 for 5) AND '%s' <= substring(oh_${day} from 7 for 5))`;
+    });
 
   if (conditions.length > 0) {
     sqlQuery += ` AND (${conditions.join(' OR ')})`;
   }
 
-  console.log('queryParams:', queryParams);
-  console.log('sqlQuery:', sqlQuery);
+  // Use format function to insert queryParams into the sqlQuery
+  const formattedSqlQuery = format(sqlQuery, ...queryParams);
+
+  return formattedSqlQuery;
+}
+
+/**
+ * Function responsible for implementing the query against the DB.
+ * @param {object} storedData
+ * @returns {Promise} Promise with the tables array with grouped and sorted wineries
+ */
+async function userData(storedData) {
+  console.log('StoredData services.UserData:', storedData);
+
+  // Call the queryBuilder function to construct the SQL query
+  const formattedSqlQuery = queryBuilder(storedData);
+  console.log('formattedSqlQuery:', formattedSqlQuery);
 
   return new Promise((resolve, reject) => {
-    query(format(sqlQuery, ...queryParams), (err, res) => {
+    query(formattedSqlQuery, (err, res) => {
       if (err) {
         console.error(err);
         reject(err);
       } else {
         const rows = res.rows;
+
         // Apply scoring and sorting
         const scoredRows = rows.map(row => {
           const scores = calculateScore(row, storedData);
@@ -282,6 +388,7 @@ async function userData(storedData) {
         // Return the tables array with grouped and sorted wineries
         resolve(tables);
       }
+
     });
   });
 }
@@ -289,4 +396,3 @@ async function userData(storedData) {
 module.exports = {
   userData
 };
-

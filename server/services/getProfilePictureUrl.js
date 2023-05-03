@@ -144,16 +144,16 @@ router.get('/getProfilePictureUrl', (req, res) => {
   }
 
   const userId = decodedToken.userId;
-  console.log('User ID: -- line 147', userId);
+  // console.log('User ID: -- line 147', userId);
 
   const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif']; // Add more extensions if needed
   
   // Find the first matching file with an allowed extension
   const findProfilePicture = (extensions) => {
-    console.log("Checking extensions:", extensions); // Add this line
+    // console.log("Checking extensions:", extensions); 
   
     if (extensions.length === 0) {
-      console.log("No matching extension found"); // Add this line
+      console.log("No matching extension found"); 
       return res.json({ url: null });
     }
   
@@ -174,7 +174,7 @@ router.get('/getProfilePictureUrl', (req, res) => {
         // File does not exist, try the next extension
         findProfilePicture(extensions.slice(1));
       } else {
-        console.log("File exist -- line 175");
+        // console.log("File exist -- line 175");
   
         // File exists, generate a signed URL
         const signedUrlExpireSeconds = 60 * 5; // Set the URL to expire in 5 minutes
@@ -183,7 +183,7 @@ router.get('/getProfilePictureUrl', (req, res) => {
           Expires: signedUrlExpireSeconds,
         });
   
-        console.log('returned url: "profilePictureUrl" -- line 184', profilePictureUrl);
+        // console.log('returned url: "profilePictureUrl" -- line 184', profilePictureUrl);
   
         res.json({ url: profilePictureUrl });
       }

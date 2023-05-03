@@ -1147,7 +1147,7 @@ function MultiPageForm() {
 // Part 1: Handle date input
 const handleDateInputChange = (date) => {
   setFormData({ ...formData, selectedDate: new Date(date) });
-  console.log('date1: ', date);
+  // console.log('date1: ', date);
 
   // Update validation state
   setValidation((prevValidation) => {
@@ -1245,7 +1245,7 @@ const handleOtherInputChange = (event) => {
 
 async function handleFormSubmit  (event)  {
   event.preventDefault();
-  console.log('currentPage', currentPage);
+  // console.log('currentPage', currentPage);
   // console.log(storedData)
   // console.log(formData)
 
@@ -1265,6 +1265,7 @@ async function handleFormSubmit  (event)  {
 
 
   try {
+
     const response = await fetch("/api/userdata", {
       method: "POST",
       headers: {
@@ -1272,6 +1273,8 @@ async function handleFormSubmit  (event)  {
       },
       body: JSON.stringify(storedData)
     });
+
+    console.log('Was send to server  [JSON]:', JSON.stringify(storedData));
     console.log('Response from server:', response);
 
     if (response.ok) {
@@ -1285,17 +1288,19 @@ async function handleFormSubmit  (event)  {
     console.error('Error submitting FormData:', error);
     console.error('Response from server:', error.response);
   }
+
 };
+
 
 
   // ********** Buttons **********
   const handlePreviousClick = () => {
-    console.log('currentPage', currentPage);
+    // console.log('currentPage', currentPage);
     setCurrentPage(currentPage - 1);
   };
 
   const handleNextClick = () => {
-    console.log('currentPage', currentPage);
+    // console.log('currentPage', currentPage);
     setCurrentPage(currentPage + 1);
   };
 
