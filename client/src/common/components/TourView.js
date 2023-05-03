@@ -132,7 +132,7 @@ function DisplayTourResults() {
                 <a href={result.website} target="_blank" rel="noopener noreferrer">
                   <img
                     className="card-img"
-                    src={logoUrls[result.winery_ID]}
+                    src={logoUrls[result.winery_id]}
                     alt={result.winery_name}
                   />
                 </a>
