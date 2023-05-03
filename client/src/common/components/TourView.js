@@ -39,12 +39,6 @@ function DisplayTourResults() {
     fetch('/api/getUserdata')
       .then((res) => {
         console.log('Received response from api.getUserdata', res);
-        console.log('Response status:', res.status);
-        console.log('Response status text:', res.statusText);
-        console.log('Response URL:', res.url);
-        console.log('Response type:', res.type);
-        console.log('Response headers:', Array.from(res.headers.entries()));
-
         return res.json();
       })
 
@@ -59,6 +53,8 @@ function DisplayTourResults() {
             table.wineries.map(async (winery) => {
               const id = winery.winery_id;
               const logoUrl = `https://wineries-il-uploads.s3.eu-central-1.amazonaws.com/WineryLogo/winery-${id}.png`;
+
+              console.log(logoUrl)
 
               console.log('components.TourView logoUrl:',id, logoUrl);
 
