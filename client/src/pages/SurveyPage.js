@@ -72,7 +72,7 @@ function SurveyPage(props) {
 
 <Box
       sx={{
-        marginTop: '7%',
+        marginTop: '15%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
