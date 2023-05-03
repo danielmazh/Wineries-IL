@@ -207,6 +207,16 @@ app.use(express.json());
 app.use(require('body-parser').json());
 app.use(require('body-parser').urlencoded({ extended: true }));
 
+// Redirect from URL with trailing slash to URL without it
+app.use((req, res, next) => {
+  if (req.path.endsWith('/') && req.path.length > 1) {
+    const query = req.url.slice(req.path.length);
+    res.redirect(301, req.path.slice(0, -1) + query);
+  } else {
+    next();
+  }
+});
+
 // Serving static files
 app.use('/userProfile', express.static(path.join(__dirname, '../client/src/assets/profile/userProfile')));
 app.use(express.static(path.resolve(__dirname, '../client/build')));
