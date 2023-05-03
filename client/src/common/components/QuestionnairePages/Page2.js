@@ -782,6 +782,11 @@ import Typography from '@mui/material/Typography';
 
 import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
 
+import { Container, Grid } from '@mui/material';
+import { useTheme, useMediaQuery } from '@mui/material';
+
+
+
 
 const Page2 = ({
   formData,
@@ -791,6 +796,13 @@ const Page2 = ({
   totalPages
 
 }) => {
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const titleFontSize = isMobile ? '24px' : isTablet ? '32px' : '40px';
+
+
 
   const selectedWineryStyleOptions = [
     { value: 'עירוני', label: ' עירוני' },
@@ -859,12 +871,24 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
 
 
   return (
-    <ResponsiveWrapper>
-    <div >
-      <h1 style={{textAlign: 'center', color: 'rgba(0, 0, 0, 0)'}}>-------------------------------------</h1>
-      <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+    <Container maxWidth="lg">
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs={12}>
+          <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1>
+        </Grid>
+        <Grid item xs={12}>
+          <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
       <h4 style={{textAlign: 'center'}}>עמוד 2 מתוך {totalPages}</h4>
+
+
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+  <Grid item xs={12} sm={6} md={4}>
+    <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
+      {/* ... */}
+    </Box>
+  </Grid>
+</Grid>
 
 {/* כשרות *************************************************************************************************** */}
     <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
@@ -875,9 +899,9 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
       </div>
 
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
-
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs={12} sm={6} md={4}>
+          <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
           <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
             מעוניינים שהיקב יהיה כשר??
             <Checkbox 
@@ -887,9 +911,10 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
               style={{ fontSize: "45px" }}
             />
           </label>
+          </Box>
+        </Grid>
+      </Grid>
 
-        </Box>
-      </div>
       {formData.KosherType && (
         <div>
           <Box
@@ -931,8 +956,6 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
       )}
   </div>
 
-
-
         <br />
         <br />
 
@@ -946,7 +969,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
       <Diversity1Icon />
     </Box>
     </div>
-
+      
     <Box textAlign="center" display="flex" justifyContent="center" alignItems="center">
       <InputLabel style={{fontSize: "25px",}} htmlFor="TourStyle">סגנון הסיור </InputLabel>
     </Box>
@@ -1462,13 +1485,12 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
 
   
   <br />
+  <br />
 
 
-  </div>
-
-  </ResponsiveWrapper>
-  
-
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
