@@ -656,7 +656,7 @@ function NavBar(props) {
           color="inherit"
           aria-label="menu"
           onClick={handleMobileMenuToggle}
-          sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }}
+          sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }} // Change mr to ml here
         >
           <MenuIcon />
         </IconButton>
