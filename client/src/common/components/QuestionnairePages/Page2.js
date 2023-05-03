@@ -37,6 +37,9 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
+import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
+
+
 
 const Page2 = ({
   formData,
