@@ -14,6 +14,10 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import WineBarIcon from '@mui/icons-material/WineBar';
 
+import PhoneForwardedIcon from '@mui/icons-material/PhoneForwarded';
+import AssistantDirectionIcon from '@mui/icons-material/AssistantDirection';
+import DomainVerificationIcon from '@mui/icons-material/DomainVerification';
+
 import Stack from '@mui/material/Stack';
 import { Box } from '@mui/material'
 
