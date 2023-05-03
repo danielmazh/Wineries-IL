@@ -256,7 +256,7 @@
 
 
 
-
+// client\src\common\components\NavBar.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { clearJwt } from '../../helpers/auth';
@@ -283,10 +283,11 @@ import Stack from '@mui/material/Stack';
 
 import UserProfileIcon from './UserProfileIcon';
 import wineriesLogo from '../../assets/WINERIES-LOGO.png';
+import PollIcon from '@mui/icons-material/Poll';
 
 import axios from 'axios';
 
-import PollIcon from '@mui/icons-material/Poll';
+import NavBarWrapper from './styled-components/NavBarWrapper';
 
 
 function NavBar(props) {
@@ -365,8 +366,10 @@ function NavBar(props) {
   ];
 
   return (
+    <NavBarWrapper>
     <AppBar
       position="fixed"
+      className="appbar-container"
       sx={{
         background: 'linear-gradient(90deg, rgba(103,0,20,1) 0%, rgba(178,34,34,1) 100%)',
       }}
@@ -500,6 +503,7 @@ function NavBar(props) {
       </Toolbar>
     </Container>
   </AppBar>
+  </NavBarWrapper>
 
   );
 }
