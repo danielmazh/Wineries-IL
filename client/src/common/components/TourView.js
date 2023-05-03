@@ -107,33 +107,96 @@ function DisplayTourResults() {
   return (
     <div style={{ textAlign: 'center' }} dir="rtl">
         <br/><br/><br/><br/><br/>
-      <h2 style={{ textAlign: 'center' }}>רשימת יקבים:</h2>
+      <h2 style={{ textAlign: 'center' }}> </h2>
       {queryResults.length > 0 && currentTable ? (
         <>
-          <h3>{currentTable.area}</h3>
-          <p>
-            ממוצע ניקוד:{" "}
-            {calculateAverage(currentTable.wineries, tourCount).toFixed(2)}
+
+
+
+<h2>יקבים לסיור באיזור {currentTable.area}</h2>
+          <p> 
+            {" "}
+            {(calculateAverage(currentTable.wineries, tourCount) * 100).toFixed(0)}%
+            התאמה
           </p>
+
+
           <div className="card-container">
-            {currentTable.wineries.slice(0, tourCount).map((result, index) => (
-              <div className="card" key={index}>
+          {currentTable.wineries.slice(0, tourCount).map((result, index) => (
+            <div className="card" key={index} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
+              <div>
                 <a href={result.website} target="_blank" rel="noopener noreferrer">
                   <img
                     className="card-img"
-                    src={logoUrls[result.winery_id]}
+                    src={logoUrls[result.winery_ID]}
                     alt={result.winery_name}
                   />
                 </a>
                 <div className="card-content">
-                  <h4>{result.winery_name} {result.winery_id}</h4>
-                  <p>{result.secondary_area}</p>
-                  <p>{result.address}</p>
-                  <p>{result.weightedScore ? result.weightedScore.toFixed(2) : 'N/A'}</p>
+                  <h4>{result.winery_name}</h4>
+                  <br/><br/>
+                  {/* <p>{result.weightedScore ? result.weightedScore.toFixed(2) : 'N/A'}</p> */}
                 </div>
               </div>
-            ))}
-          </div>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                width: '100%',
+                padding: '2% 0',
+              }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <span>חיוג</span>
+                  <a href={`tel:${result.phone}`} style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '10px',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: 'transparent',
+                    transition: 'background-color 0.2s',
+                  }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e0e0e0'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                    <PhoneForwardedIcon style={{ fontSize: '45px' }} />
+                  </a>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <span>ניווט</span>
+                  <a href={`https://waze.com/ul?navigate=yes&q=${encodeURIComponent(result.address)}`} target="_blank" rel="noopener noreferrer" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '10px',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: 'transparent',
+                    transition: 'background-color 0.2s',
+                  }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e0e0e0'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                    <AssistantDirectionIcon style={{ fontSize: '45px' }} />
+                  </a>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <span>הזמן</span>
+                  <a href={result.website} target="_blank" rel="noopener noreferrer" style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    padding: '10px',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: 'transparent',
+                    transition: 'background-color 0.2s',
+                  }} onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e0e0e0'} onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>
+                    <DomainVerificationIcon style={{ fontSize: '45px' }} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+
+          
           <br/>
           {/* <button onClick={handlePrevious}>הקודם</button> */}
           {/* <button onClick={handleNext}>סיור אחר</button> */}

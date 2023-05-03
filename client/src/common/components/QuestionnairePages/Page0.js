@@ -113,12 +113,12 @@ const Page0 = ({ first_name, last_name }) => {
         <img src={Logo} alt="Logo" style={styles.logo} />
       </DialogTitle>
       <DialogContent>
-        <p style={{ fontWeight: 'bold', fontSize: '100%' }}>עליכם להיות מעל גיל 18 כדי להיכנס לאתר זה</p>
+        <p style={{ fontWeight: 'bold', fontSize: '100%' }}>עליכם להיות מעל גיל 18</p>
       </DialogContent>
 
         <DialogActions style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={handleClose} variant="outlined" style={{ width: '50%', height: '50px' }}>
-          אני מאשר
+          אישור גיל
         </Button>
       </DialogActions>
 
