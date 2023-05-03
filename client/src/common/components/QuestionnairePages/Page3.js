@@ -29,6 +29,9 @@ import AttractionsIcon from '@mui/icons-material/Attractions';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LiquorIcon from '@mui/icons-material/Liquor';
 
+import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
+
+
 
 const Page3 = ({ formData, totalPages }) => {
   return (
