@@ -418,7 +418,7 @@
 
 
 
-// NEW POSTGRESQL CODE
+// server\services\SignUp.js
 const bcrypt = require("bcrypt");
 const { query } = require("../db");
 const format = require('pg-format');

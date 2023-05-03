@@ -134,63 +134,65 @@ const format = require('pg-format');
 
 require('dotenv').config();
 
-const tokenRequestTimeStore = {};
+// Add this to the top of your VerifyEmail.js file
+const rateLimiter = {};
 
 function verifyEmail(req, res, next) {
   console.log('verifyEmail function called');
   const token = req.params.token;
-
-  // Check if the token is already in the store
-  const lastRequestTime = tokenRequestTimeStore[token];
-  const currentTime = Date.now();
-
-  if (lastRequestTime && currentTime - lastRequestTime < 3000) {
-    // The last request for this token was within 3 seconds, send a success message
-    res.send(`
-      <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
-    `);
-    return;
-  }
-
-  // Update the request time for this token in the store
-  tokenRequestTimeStore[token] = currentTime;
-
   const queryString = format(`SELECT * FROM ${process.env.TABLE_NAME}.email_verification_tokens WHERE token = %L AND expires_at > %L`, token, new Date().toISOString());
 
-  query(queryString, (err, result) => {
+  query(queryString, async (err, result) => {
     if (err) {
       next(err);
     } else if (!result.rows[0]) {
       res.status(400).send(`
-      <p>האימות נכשל, נסו שוב, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
-    `);
-
+        <p>האימות נכשל, נסו שוב. <a href="https://www.wineries-il.co.il/">חזרה</a></p>
+      `);
     } else {
       const row = result.rows[0];
-      const queryString2 = format(`UPDATE ${process.env.TABLE_NAME}.users SET email_verified = 1 WHERE id = %L`, row.user_id);
+      const queryString2 = format(`SELECT email_verified FROM ${process.env.TABLE_NAME}.users WHERE id = %L`, row.user_id);
 
-      query(queryString2, (err) => {
-        if (err) {
-          next(err);
-        } else {
-          // Delete the used token from the email_verification_tokens table
-          const queryString3 = format(`DELETE FROM ${process.env.TABLE_NAME}.email_verification_tokens WHERE token = %L`, token);
-
-          query(queryString3, (err) => {
-            if (err) {
-              next(err);
-            } else {
-              res.send(`
-                <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
-              `);
-
-            }
-          });
+      const userEmailVerificationStatus = await query(queryString2);
+      if (userEmailVerificationStatus.rows[0].email_verified) {
+        res.send(`
+          <p>המייל כבר אומת בעבר, <a href="https://www.wineries-il.co.il/Login/">חזרה להתחברות</a></p>
+        `);
+      } else {
+        // Check if the token was used in the last 3 seconds
+        const currentTime = Date.now();
+        if (rateLimiter[token] && currentTime - rateLimiter[token] < 3000) {
+          res.send(`
+            <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/Login/">חזרה להתחברות</a></p>
+          `);
+          return;
         }
-      });
+        rateLimiter[token] = currentTime;
+
+        const queryString3 = format(`UPDATE ${process.env.TABLE_NAME}.users SET email_verified = 1 WHERE id = %L`, row.user_id);
+        query(queryString3, (err) => {
+          if (err) {
+            next(err);
+          } else {
+            // Delete the used token from the email_verification_tokens table
+            const queryString4 = format(`DELETE FROM ${process.env.TABLE_NAME}.email_verification_tokens WHERE token = %L`, token);
+
+            query(queryString4, (err) => {
+              if (err) {
+                next(err);
+              } else {
+                res.send(`
+                  <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/Login/">חזרה להתחברות</a></p>
+                `);
+              }
+            });
+          }
+        });
+      }
     }
   });
 }
+
 
 module.exports = {
   verifyEmail,

@@ -174,7 +174,7 @@ const Page0 = ({ first_name, last_name }) => {
           </DialogTitle>
           <DialogContent>
             <p style={{ fontWeight: "bold", fontSize: "100%" }}>
-              עליכם להיות מעל גיל 18 כדי לגשת לתוכן הבא
+              עליכם להיות מעל גיל 18 כדי להתחבר
             </p>
           </DialogContent>
 
