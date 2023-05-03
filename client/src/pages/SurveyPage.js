@@ -70,31 +70,35 @@ function SurveyPage(props) {
           </Box> */}
 
 
-<Box
-      sx={{
-        marginTop: '15%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        border: '2px solid #b8860b',
-        borderRadius: '10px',
-        boxShadow: '5px 5px 10px #888888',
-        overflow: 'auto', /* Add overflow to enable scrolling */
-        scrollbarWidth: 'thin', /* Set the scrollbar width */
-        scrollbarColor: '#b8860b #f0e68c', /* Set the scrollbar color */
-      }}
-    >
-      <iframe
-        src="https://survey.zohopublic.com/zs/QuB3Ij"
-        frameborder="0"
-        style={{ height: '630px', width: '100%' }}
-        marginwidth="0"
-        marginheight="0"
-        scrolling="yes" /* Set scrolling to "yes" to enable mouse wheel scrolling */
-        allow="geolocation"
-        title="Survey"
-      ></iframe>
-    </Box>
+          <Box
+            sx={{
+              marginTop: {
+                xs: '20%', // Set margin top to 15% for mobile devices
+                sm: '7%', // Keep margin top 7% for larger screens
+              },
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              border: '2px solid #b8860b',
+              borderRadius: '10px',
+              boxShadow: '5px 5px 10px #888888',
+              overflow: 'auto',
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#b8860b #f0e68c',
+            }}
+          >
+            <iframe
+              src="https://survey.zohopublic.com/zs/QuB3Ij"
+              frameborder="0"
+              style={{ height: '630px', width: '100%' }}
+              marginwidth="0"
+              marginheight="0"
+              scrolling="yes"
+              allow="geolocation"
+              title="Survey"
+            ></iframe>
+          </Box>
+
 
 
         </Container>
