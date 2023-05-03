@@ -20,7 +20,7 @@
 // export default ResponsiveWrapper;
 
 
-
+// client\src\common\components\styled-components\ResponsiveWrapper.js
 import styled from "styled-components";
 
 const ResponsiveWrapper = styled.div`
