@@ -870,6 +870,14 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
   };
 
 
+  //   return (
+//     <div >
+//       <h1 style={{textAlign: 'center', color: 'rgba(0, 0, 0, 0)'}}>-------------------------------------</h1>
+//       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+
+//       <h4 style={{textAlign: 'center'}}>עמוד 2 מתוך {totalPages}</h4>
+
+
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2} alignItems="center" justifyContent="center">
@@ -877,7 +885,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
           <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1>
         </Grid>
         <Grid item xs={12}>
-          <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+          <div style={{ border: "1px solid gray", padding: "30px", borderRadius: "5px", position: 'relative' }}>
 
       <h4 style={{textAlign: 'center'}}>עמוד 2 מתוך {totalPages}</h4>
 
