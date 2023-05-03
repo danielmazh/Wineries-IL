@@ -891,30 +891,29 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
 </Grid>
 
 {/* כשרות *************************************************************************************************** */}
-    <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+<div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
 
-      <div style={{ backgroundColor: 'lightgray', borderRadius: '25%', position: 'absolute', right: 35, top: '50%', transform: 'translate(50%, -50%)', padding: '10px' }}>
-        <ReceiptLongIcon />
-      </div>
+       <div style={{ backgroundColor: 'lightgray', borderRadius: '25%', position: 'absolute', right: 35, top: '50%', transform: 'translate(50%, -50%)', padding: '10px' }}>
+         <ReceiptLongIcon />
+       </div>
 
 
-      <Grid container spacing={2} alignItems="center" justifyContent="center">
-        <Grid item xs={12} sm={6} md={4}>
-          <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
-          <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
-            מעוניינים שהיקב יהיה כשר??
-            <Checkbox 
+       <div style={{ display: "flex", justifyContent: "center" }}>
+         <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
+
+           <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
+             מעוניינים שהיקב יהיה כשר??
+             <Checkbox 
               name="KosherType"
               checked={formData.KosherType}
               onChange={handleOtherInputChange}
               style={{ fontSize: "45px" }}
             />
           </label>
-          </Box>
-        </Grid>
-      </Grid>
 
+        </Box>
+      </div>
       {formData.KosherType && (
         <div>
           <Box
