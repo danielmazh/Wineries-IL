@@ -140,14 +140,27 @@ const rateLimiter = {};
 function verifyEmail(req, res, next) {
   console.log('verifyEmail function called');
   const token = req.params.token;
+
+  // Check if the token was used in the last 3 seconds
+  const currentTime = Date.now();
+  if (rateLimiter[token] && currentTime - rateLimiter[token] < 3000) {
+    console.log('log1')
+    res.send(`
+      <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
+    `);
+    return;
+  }
+  rateLimiter[token] = currentTime;
+
   const queryString = format(`SELECT * FROM ${process.env.TABLE_NAME}.email_verification_tokens WHERE token = %L AND expires_at > %L`, token, new Date().toISOString());
 
   query(queryString, async (err, result) => {
     if (err) {
       next(err);
     } else if (!result.rows[0]) {
+      console.log('log2')
       res.status(400).send(`
-        <p>האימות נכשל, נסו שוב. <a href="https://www.wineries-il.co.il/">חזרה</a></p>
+        <p>האימות נכשל, נסו שוב. <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
       `);
     } else {
       const row = result.rows[0];
@@ -155,20 +168,11 @@ function verifyEmail(req, res, next) {
 
       const userEmailVerificationStatus = await query(queryString2);
       if (userEmailVerificationStatus.rows[0].email_verified) {
+        console.log('log3')
         res.send(`
-          <p>המייל כבר אומת בעבר, <a href="https://www.wineries-il.co.il/Login/">חזרה להתחברות</a></p>
+          <p>המייל כבר אומת בעבר, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
         `);
       } else {
-        // Check if the token was used in the last 3 seconds
-        const currentTime = Date.now();
-        if (rateLimiter[token] && currentTime - rateLimiter[token] < 3000) {
-          res.send(`
-            <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/Login/">חזרה להתחברות</a></p>
-          `);
-          return;
-        }
-        rateLimiter[token] = currentTime;
-
         const queryString3 = format(`UPDATE ${process.env.TABLE_NAME}.users SET email_verified = 1 WHERE id = %L`, row.user_id);
         query(queryString3, (err) => {
           if (err) {
@@ -181,8 +185,9 @@ function verifyEmail(req, res, next) {
               if (err) {
                 next(err);
               } else {
+                console.log('log4')
                 res.send(`
-                  <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/Login/">חזרה להתחברות</a></p>
+                  <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
                 `);
               }
             });
@@ -192,6 +197,7 @@ function verifyEmail(req, res, next) {
     }
   });
 }
+
 
 
 module.exports = {
