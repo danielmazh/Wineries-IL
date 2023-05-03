@@ -162,7 +162,7 @@ function verifyEmail(req, res, next) {
       next(err);
     } else if (!result.rows[0]) {
       res.status(400).send(`
-      <p>המייל אומת בהצלחה, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
+      <p>האימות נכשל, נסו שוב, <a href="https://www.wineries-il.co.il/">חזרה להתחברות</a></p>
     `);
 
     } else {
