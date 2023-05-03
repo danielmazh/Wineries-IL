@@ -656,50 +656,52 @@ function NavBar(props) {
           color="inherit"
           aria-label="menu"
           onClick={handleMobileMenuToggle}
-          sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }} // Change mr to ml here
+          sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }}
+
+          // sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }} 
         >
           <MenuIcon />
         </IconButton>
 
 
-
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
             {pages.map((page) => (
               <Button
-  key={page.name}
-  onClick={(e) => {
-    e.preventDefault();
-    handleCloseNavMenu();
-    window.location.href = page.path;
-  }}
-  sx={{
-    my: 1,
-    mx: 1,
-    color: 'white',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontWeight: 'bold',
-    fontSize: '1.1rem',
-    minWidth: '160px',
-    border: '1px solid transparent',
-    borderRadius: '4px',
-  }}
-  component={Link}
-  to={page.path}
-  startIcon={page.icon}
->
-  {page.name}
-</Button>
+                key={page.name}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCloseNavMenu();
+                  window.location.href = page.path;
+                }}
+                sx={{
+                  my: 1,
+                  mx: 1,
+                  color: 'white',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  fontWeight: 'bold',
+                  fontSize: '1.1rem',
+                  minWidth: '160px',
+                  border: '1px solid transparent',
+                  borderRadius: '4px',
+                }}
+                component={Link}
+                to={page.path}
+                startIcon={page.icon}
+              >
+                {page.name}
+              </Button>
 
 
             ))}
           </Box>
 
         {props.authToken && (
-          <Box sx={{ flexGrow: 1 }}>
-              
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          {/* <Box sx={{ flexGrow: 1 }}> */}
+
             <Tooltip title="הגדרות" >
               <IconButton
                 edge="end"
@@ -707,13 +709,11 @@ function NavBar(props) {
                 aria-label="menu"
                 onClick={handleOpenSettingsMenu}
               >
-                <UserProfileIcon
-                profilePictureUrl={profilePictureUrl}
-              />
-
+                <UserProfileIcon profilePictureUrl={profilePictureUrl} />
               </IconButton>
             </Tooltip>
           </Box>
+
           )}
           <Menu 
             anchorEl={settingsMenuAnchorEl}
