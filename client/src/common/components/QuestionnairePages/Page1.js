@@ -66,11 +66,12 @@ const Page1 = ({
       <br />
       <br />
 
-        <InputLabel htmlFor="selectedDate">בחרו תאריך לסיור היין שלכם</InputLabel>
-        <FormControl fullWidth style={{ width: "100%" }}>
+      <InputLabel htmlFor="selectedDate">בחרו תאריך לסיור היין שלכם</InputLabel>
+      <FormControl fullWidth style={{ width: "100%" }}>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={heLocale}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <DatePicker
+              fullWidth
               id="selectedDate"
               value={formData.selectedDate}
               onChange={handleDateInputChange}
@@ -81,6 +82,7 @@ const Page1 = ({
             />
             
             <TextField
+              fullWidth
               disabled
               label="היום שנבחר"
               variant="outlined"
@@ -97,8 +99,8 @@ const Page1 = ({
             />
           </div>
         </LocalizationProvider>
-        </FormControl>
-        {validation.selectedDate && <div className="error">{validation.selectedDate}</div>}
+      </FormControl>
+      {validation.selectedDate && <div className="error">{validation.selectedDate}</div>}
 
       <br />
       <br />
