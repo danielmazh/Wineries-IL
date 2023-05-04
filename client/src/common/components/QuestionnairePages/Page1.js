@@ -95,9 +95,9 @@ const Page1 = ({
         </Typography>
       </Box>
 
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <h2 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h2>
-      </Grid>
+      </Grid> */}
       {/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */}
 
       <InputLabel htmlFor="TourArea">בחרו איזור לסיור היין שלכם</InputLabel>
