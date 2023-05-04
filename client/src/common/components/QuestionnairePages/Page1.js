@@ -82,7 +82,6 @@ const Page1 = ({
             />
             
             <TextField
-              fullWidth
               disabled
               label="היום שנבחר"
               variant="outlined"
