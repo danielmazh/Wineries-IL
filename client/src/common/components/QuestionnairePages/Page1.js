@@ -46,7 +46,6 @@ const Page1 = ({
 
 
       <InputLabel htmlFor="TourArea">בחרו איזור לסיור היין שלכם</InputLabel>
-      <FormControl fullWidth style={{ width: "100%" }}>
       <InputLabel htmlFor="TourArea">יש לבחור מהרשימה</InputLabel>
         <Select
           fullWidth
@@ -64,6 +63,7 @@ const Page1 = ({
       <br />
 
         <InputLabel htmlFor="selectedDate">בחרו תאריך לסיור היין שלכם</InputLabel>
+        <FormControl fullWidth style={{ width: "100%" }}>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={heLocale}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <DatePicker
@@ -98,6 +98,7 @@ const Page1 = ({
 
       <br />
       <br />
+
       <InputLabel htmlFor="TourCount">בכמה יקבים ברצונכם לבקר </InputLabel>
         <FormControl fullWidth>
           <InputLabel htmlFor="TourCount">יש לבחור מהרשימה</InputLabel>
@@ -159,7 +160,6 @@ const Page1 = ({
       </div>
       {validation.TourTime && <div className="error">{validation.TourTime}</div>}
 
-      <br />
       <br />
 
       <InputLabel htmlFor="TourPeopleCount"> מספר האנשים בסיור</InputLabel>
@@ -227,7 +227,6 @@ const Page1 = ({
         {validation.BudgetRange && <div className="error">{validation.BudgetRange}</div>}
       </div>
 
-      <br />
       <br />
 
       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px" }}>
