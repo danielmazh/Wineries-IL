@@ -44,8 +44,10 @@ const Page1 = ({
 
       <h4 style={{ textAlign: 'center' }}>עמוד 1 מתוך {totalPages}</h4>
 
-      <FormControl fullWidth>
+
       <InputLabel htmlFor="TourArea">בחרו איזור לסיור היין שלכם</InputLabel>
+      <FormControl fullWidth style={{ width: "100%" }}>
+      <InputLabel htmlFor="TourArea">יש לבחור מהרשימה</InputLabel>
         <Select
           fullWidth
           id="TourArea"
@@ -57,7 +59,6 @@ const Page1 = ({
           <MenuItem value="ירושלים">ירושלים</MenuItem>
         </Select>
         {validation.TourArea && <div className="error">{validation.TourArea}</div>}
-      </FormControl>
 
       <br />
       <br />
@@ -80,7 +81,7 @@ const Page1 = ({
               label="היום שנבחר"
               variant="outlined"
               value={
-                formData.selectedDate ? formData.selectedDate.toLocaleDateString('he-IL', { weekday: 'long' }) : 'לא נבחר תאריך'
+                formData.selectedDate ? formData.selectedDate.toLocaleDateString('he-IL', { weekday: 'long' }) : '➡'
               }
               InputProps={{
                 endAdornment: (
@@ -92,13 +93,14 @@ const Page1 = ({
             />
           </div>
         </LocalizationProvider>
+        </FormControl>
         {validation.selectedDate && <div className="error">{validation.selectedDate}</div>}
 
       <br />
       <br />
-
+      <InputLabel htmlFor="TourCount">בכמה יקבים ברצונכם לבקר </InputLabel>
         <FormControl fullWidth>
-          <InputLabel htmlFor="TourCount">בכמה יקבים תרצו לסייר בסיור היין שלכם</InputLabel>
+          <InputLabel htmlFor="TourCount">יש לבחור מהרשימה</InputLabel>
           <Select
             id="TourCount"
             name="TourCount"
@@ -160,8 +162,9 @@ const Page1 = ({
       <br />
       <br />
 
+      <InputLabel htmlFor="TourPeopleCount"> מספר האנשים בסיור</InputLabel>
       <FormControl fullWidth>
-        <InputLabel htmlFor="TourPeopleCount">מספר אנשים בסיור</InputLabel>
+        <InputLabel htmlFor="TourPeopleCount"> יש להזין ערך</InputLabel>
         <TextField
           id="TourPeopleCount"
           name="TourPeopleCount"
@@ -184,7 +187,7 @@ const Page1 = ({
 
       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
         <Box display="flex" alignItems="center">
-          <InputLabel style={{ marginRight: '10px' }}>תקציב רצוי לאדם</InputLabel>
+          <InputLabel style={{ marginRight: '10px' }}>התקציב הרצוי לאדם</InputLabel>
           <Box
             component="span"
             sx={{
