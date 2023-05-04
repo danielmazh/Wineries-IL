@@ -707,7 +707,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
               sx={{'& > legend': { mt: 2 },}}
             >
             <Typography component="legend" style={{alignItems: "center", fontSize: "20px", textAlign: "center", width: "100%",}}>
-            עד כמה המסעדה ביקב חשובה לכם??
+            עד כמה סוגי היינות ביקב חשובים לכם??
             </Typography>
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
