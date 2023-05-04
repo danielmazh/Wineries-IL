@@ -38,7 +38,7 @@ const Page1 = ({
 
 
   return (
-    <ResponsiveWrapper>
+    <ResponsiveWrapper style={{ width: "100%" }}>
     <div style={{ direction: 'rtl', textAlign: 'right' }}>
       {/* <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1> */}
 
