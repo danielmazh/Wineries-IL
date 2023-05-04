@@ -143,14 +143,14 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
           עמוד 2 מתוך {totalPages}
         </Typography>
       </Box>
+      
 {/* כשרות *************************************************************************************************** */}
-    <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
+    <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
       <div style={{ backgroundColor: 'lightgray', borderRadius: '25%', position: 'absolute', right: 35, top: '50%', transform: 'translate(50%, -50%)', padding: '10px' }}>
         <ReceiptLongIcon />
       </div>
-
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
@@ -159,7 +159,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
           <InputLabel style={{fontSize: "25px",}} htmlFor="KosherType">כשרות היקב </InputLabel>
         </Box>
 
-        <FormControl fullWidth>
+        <FormControl fullWidth style={{ width: "260px" }}>
 
           <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
 
