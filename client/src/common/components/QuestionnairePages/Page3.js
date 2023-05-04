@@ -32,7 +32,7 @@ import RestaurantIcon from '@mui/icons-material/Restaurant';
 import LiquorIcon from '@mui/icons-material/Liquor';
 
 import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
-import Grid from '@mui/material';
+import { Grid } from '@mui/material';
 
 
 
