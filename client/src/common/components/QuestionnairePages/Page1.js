@@ -67,39 +67,41 @@ const Page1 = ({
       <br />
 
       <InputLabel htmlFor="selectedDate">בחרו תאריך לסיור היין שלכם</InputLabel>
-      <FormControl fullWidth style={{ width: "100%" }}>
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={heLocale}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <DatePicker
-              fullWidth
-              id="selectedDate"
-              value={formData.selectedDate}
-              onChange={handleDateInputChange}
-              placeholderText="יש לבחור תאריך"
-              dateFormat="dd/MM/yyyy"
-              renderInput={(props) => <input {...props} />}
-              locale={hebrewLocale}
-            />
-            
-            <TextField
-              disabled
-              label="היום שנבחר"
-              variant="outlined"
-              value={
-                formData.selectedDate ? formData.selectedDate.toLocaleDateString('he-IL', { weekday: 'long' }) : '➡'
-              }
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    {/* <ArrowDropDownIcon /> */}
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </div>
-        </LocalizationProvider>
-      </FormControl>
-      {validation.selectedDate && <div className="error">{validation.selectedDate}</div>}
+<FormControl fullWidth style={{ width: "100%" }}>
+  <LocalizationProvider dateAdapter={AdapterDateFns} locale={heLocale}>
+    <div style={{ display: 'flex' }}>
+      <DatePicker
+        id="selectedDate"
+        value={formData.selectedDate}
+        onChange={handleDateInputChange}
+        placeholderText="יש לבחור תאריך"
+        dateFormat="dd/MM/yyyy"
+        renderInput={(props) => <input {...props} />}
+        locale={hebrewLocale}
+        style={{ width: "50%" }}
+      />
+      
+      <TextField
+        disabled
+        label="היום שנבחר"
+        variant="outlined"
+        value={
+          formData.selectedDate ? formData.selectedDate.toLocaleDateString('he-IL', { weekday: 'long' }) : '➡'
+        }
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              {/* <ArrowDropDownIcon /> */}
+            </InputAdornment>
+          ),
+        }}
+        style={{ width: "50%" }}
+      />
+    </div>
+  </LocalizationProvider>
+</FormControl>
+{validation.selectedDate && <div className="error">{validation.selectedDate}</div>}
+
 
       <br />
       <br />
