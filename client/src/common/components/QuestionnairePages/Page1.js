@@ -42,8 +42,27 @@ const Page1 = ({
 
       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
-      <h4 style={{ textAlign: 'center' }}>עמוד 1 מתוך {totalPages}</h4>
-
+      <Box
+        component="span"
+        sx={{
+          display: 'block',
+          p: 1,
+          m: 1,
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '0px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '200',
+        }}
+      >
+        <Typography align="center">
+          עמוד 1 מתוך {totalPages}
+        </Typography>
+      </Box>
 
       <InputLabel htmlFor="TourArea">בחרו איזור לסיור היין שלכם</InputLabel>
       <FormControl fullWidth style={{ width: "100%" }}>

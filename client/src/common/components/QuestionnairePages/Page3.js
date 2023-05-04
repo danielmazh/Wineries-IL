@@ -36,10 +36,31 @@ import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
 const Page3 = ({ formData, totalPages }) => {
   return (
     <ResponsiveWrapper>
+    <div >
+      <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
     
-    <Container maxWidth="sm">
 
-      <Typography align="center" sx={{ mb: 2 }}>עמוד 3 מתוך {totalPages}</Typography>
+    <Box
+        component="span"
+        sx={{
+          display: 'block',
+          p: 1,
+          m: 1,
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '0px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '200',
+        }}
+      >
+        <Typography align="center">
+          עמוד 3 מתוך {totalPages}
+        </Typography>
+      </Box>
 
     <List 
     sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -321,13 +342,14 @@ const Page3 = ({ formData, totalPages }) => {
       // variant="h6"
         style={{textAlign: 'center', color: 'rgba(0, 0, 0, 0)'}} 
       >
-        ----------
+        --
         
         </Typography>
-
-    </List>
-    </Container>
-    </ResponsiveWrapper>
+        </List>
+  
+      </div>
+  </div>
+</ResponsiveWrapper>
     
   );
 };
