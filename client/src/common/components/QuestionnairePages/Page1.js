@@ -37,11 +37,38 @@ const Page1 = ({
 }) => {
 
 
+  // return (
+  //   <ResponsiveWrapper style={{ width: "100%" }}>
+  //   <div style={{ direction: 'rtl', textAlign: 'right' }}>
+  //     {/* <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1> */}
+
+  //     <div style={{ border: window.innerWidth >= 600 ? "1px solid gray" : "none", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+
+  //     <Box
+  //       component="span"
+  //       sx={{
+  //         display: 'block',
+  //         p: 1,
+  //         m: 1,
+  //         bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
+  //         color: (theme) =>
+  //           theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+  //         border: '0px solid',
+  //         borderColor: (theme) =>
+  //           theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+  //         borderRadius: 2,
+  //         fontSize: '0.875rem',
+  //         fontWeight: '200',
+  //       }}
+  //     >
+  //       <Typography align="center">
+  //         עמוד 1 מתוך {totalPages}
+  //       </Typography>
+  //     </Box>
+
   return (
     <ResponsiveWrapper style={{ width: "100%" }}>
     <div style={{ direction: 'rtl', textAlign: 'right' }}>
-      {/* <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1> */}
-
       <div style={{ border: window.innerWidth >= 600 ? "1px solid gray" : "none", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
       <Box
@@ -62,9 +89,14 @@ const Page1 = ({
         }}
       >
         <Typography align="center">
-          עמוד 1 מתוך {totalPages}
+          עמוד 1 מתוך {totalPages-1}
         </Typography>
       </Box>
+
+      <Grid item xs={12}>
+        <h2 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h2>
+      </Grid>
+      {/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */}
 
       <InputLabel htmlFor="TourArea">בחרו איזור לסיור היין שלכם</InputLabel>
       <FormControl fullWidth style={{ width: "100%" }}>

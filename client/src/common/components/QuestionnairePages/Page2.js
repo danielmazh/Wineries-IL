@@ -116,6 +116,12 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
   };
 
 
+
+
+
+
+
+
   return (
     <ResponsiveWrapper style={{ width: "100%" }}>
     <div style={{ direction: 'rtl', textAlign: 'right' }}>
@@ -140,7 +146,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
         }}
       >
         <Typography align="center">
-          עמוד 2 מתוך {totalPages}
+          עמוד 2 מתוך {totalPages-1}
         </Typography>
       </Box>
       
@@ -159,7 +165,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
           <InputLabel style={{fontSize: "25px",}} htmlFor="KosherType">כשרות היקב </InputLabel>
         </Box>
 
-        <FormControl fullWidth style={{ width: "260px" }}>
+        <FormControl fullWidth style={{ width: "220px" }}>
 
           <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
 
