@@ -21,6 +21,8 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import hebrewLocale from 'date-fns/locale/he';
+import Typography from '@mui/material/Typography';
+
 
 import ResponsiveWrapper from '../styled-components/ResponsiveWrapper';
 
