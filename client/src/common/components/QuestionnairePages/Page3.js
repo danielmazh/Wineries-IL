@@ -42,32 +42,33 @@ const Page3 = ({ formData, totalPages }) => {
     <ResponsiveWrapper>
     <div >
       <div style={{ padding: "10px", borderRadius: "5px", position: 'relative' }}>
-    
 
-      <List 
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      <List
+
+      sx={{
+        width: '100%',
+        bgcolor: 'background.paper',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+
       component="nav"
       aria-labelledby="nested-list-subheader"
-
-
-        
       subheader={
-
-
-        <ListSubheader>
-          <Typography 
-          // variant="h6"
-          // sx={{ mb: 2, mt: 4 }}
-          component="div" id="nested-list-subheader"
-          fontFamily= 'Heebo, sans-serif'
-          textAlign= 'center'
-          fontSize= '45px'
-          >
-            סיכום הנתונים
-            </Typography>
-        </ListSubheader>
-        }
+      <ListSubheader>
+        <Typography 
+        component="div" id="nested-list-subheader"
+        fontFamily= 'Heebo, sans-serif'
+        textAlign= 'center'
+        fontSize= '45px'
         >
+          סיכום הנתונים
+          </Typography>
+      </ListSubheader>
+      }
+      >
 
 
 <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
