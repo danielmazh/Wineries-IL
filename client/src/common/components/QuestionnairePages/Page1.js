@@ -46,6 +46,8 @@ const Page1 = ({
 
 
       <InputLabel htmlFor="TourArea">בחרו איזור לסיור היין שלכם</InputLabel>
+      <FormControl fullWidth style={{ width: "100%" }}>
+
       <InputLabel htmlFor="TourArea">יש לבחור מהרשימה</InputLabel>
         <Select
           fullWidth
@@ -58,6 +60,8 @@ const Page1 = ({
           <MenuItem value="ירושלים">ירושלים</MenuItem>
         </Select>
         {validation.TourArea && <div className="error">{validation.TourArea}</div>}
+        </FormControl>
+
 
       <br />
       <br />
