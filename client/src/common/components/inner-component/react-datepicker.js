@@ -12,6 +12,7 @@ function DateSelection() {
   return (
     <div>
       <DatePicker
+        fullwidth
         selected={selectedDate}
         onChange={handleDateChange}
         dateFormat="dd/MM/yyyy"
