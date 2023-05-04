@@ -166,7 +166,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
           <InputLabel style={{fontSize: "25px",}} htmlFor="KosherType">כשרות היקב </InputLabel>
         </Box>
 
-        <FormControl fullWidth style={{ width: "150px" }}>
+        <FormControl fullWidth style={{ width: window.innerWidth >= 768 ? "220px" : "150px" }}>
 
           <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
 
