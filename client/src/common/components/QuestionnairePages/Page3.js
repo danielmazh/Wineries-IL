@@ -44,7 +44,7 @@ const Page3 = ({ formData, totalPages }) => {
       <div style={{ padding: "10px", borderRadius: "5px", position: 'relative' }}>
     
 
-    <Box
+    {/* <Box
         component="span"
         sx={{
           display: 'block',
@@ -64,7 +64,7 @@ const Page3 = ({ formData, totalPages }) => {
         <Typography align="center">
           עמוד 3 מתוך {totalPages}
         </Typography>
-      </Box>
+      </Box> */}
 
     <List 
     sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
