@@ -44,61 +44,30 @@ const Page3 = ({ formData, totalPages }) => {
       <div style={{ padding: "10px", borderRadius: "5px", position: 'relative' }}>
     
 
-    {/* <Box
-        component="span"
-        sx={{
-          display: 'block',
-          p: 1,
-          m: 1,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-          border: '0px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-          borderRadius: 2,
-          fontSize: '0.875rem',
-          fontWeight: '200',
-        }}
-      >
-        <Typography align="center">
-          עמוד 3 מתוך {totalPages}
-        </Typography>
-      </Box> */}
-
-    <List 
-    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-    component="nav"
-    aria-labelledby="nested-list-subheader"
+      <List 
+      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      component="nav"
+      aria-labelledby="nested-list-subheader"
 
 
+        
+      subheader={
 
 
-    // fontWeight= 'bold'
-    // fontFamily= 'Heebo, sans-serif'
-    //   color= 'rgba(255, 215, 0, 0.9)' 
-    //   fontSize= '45px'
-    //   textAlign= 'center'
-    //   textShadow= '3px 3px 4px rgba(0, 0, 0, 1)' 
-
-      
-    subheader={
-
-
-      <ListSubheader>
-        <Typography 
-        // variant="h6"
-        sx={{ mb: 2, mt: 4 }}
-        component="div" id="nested-list-subheader"
-        fontFamily= 'Heebo, sans-serif'
-        textAlign= 'center'
-        fontSize= '45px'
+        <ListSubheader>
+          <Typography 
+          // variant="h6"
+          // sx={{ mb: 2, mt: 4 }}
+          component="div" id="nested-list-subheader"
+          fontFamily= 'Heebo, sans-serif'
+          textAlign= 'center'
+          fontSize= '45px'
+          >
+            סיכום הנתונים
+            </Typography>
+        </ListSubheader>
+        }
         >
-          סיכום הנתונים
-          </Typography>
-      </ListSubheader>
-      }
-      >
 
 
 <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
