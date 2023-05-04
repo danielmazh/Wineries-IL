@@ -69,8 +69,10 @@ const Page1 = ({
       <InputLabel htmlFor="selectedDate">בחרו תאריך לסיור היין שלכם</InputLabel>
 <FormControl fullWidth style={{ width: "100%" }}>
   <LocalizationProvider dateAdapter={AdapterDateFns} locale={heLocale}>
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', width: '100%' }}>
       <DatePicker
+        style={{ width: '50%' }}
+        fullWidth
         id="selectedDate"
         value={formData.selectedDate}
         onChange={handleDateInputChange}
@@ -78,10 +80,10 @@ const Page1 = ({
         dateFormat="dd/MM/yyyy"
         renderInput={(props) => <input {...props} />}
         locale={hebrewLocale}
-        style={{ width: "50%" }}
       />
       
       <TextField
+        style={{ width: '50%' }}
         disabled
         label="היום שנבחר"
         variant="outlined"
@@ -95,12 +97,12 @@ const Page1 = ({
             </InputAdornment>
           ),
         }}
-        style={{ width: "50%" }}
       />
     </div>
   </LocalizationProvider>
 </FormControl>
 {validation.selectedDate && <div className="error">{validation.selectedDate}</div>}
+
 
 
       <br />
