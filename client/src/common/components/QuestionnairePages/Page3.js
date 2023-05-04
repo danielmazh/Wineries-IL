@@ -21,6 +21,8 @@ import NightsStayIcon from '@mui/icons-material/NightsStay';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import PaymentIcon from '@mui/icons-material/Payment';
 import AccessibleIcon from '@mui/icons-material/Accessible';
+import Box from '@mui/material/Box';
+
 
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import Diversity1Icon from '@mui/icons-material/Diversity1';
