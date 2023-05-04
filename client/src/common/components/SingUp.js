@@ -976,7 +976,6 @@ const SignUp = () => {
                 </Tooltip>
               </Grid>
               <Grid item xs={12}>
-              <Tooltip title="כתובת מייל תקינה" enterTouchDelay={0} leaveTouchDelay={2000}>
                 <TextField
                   required
                   fullWidth
@@ -990,7 +989,6 @@ const SignUp = () => {
                   sx={emailError ? { borderColor: "error.main" } : {}}
                   InputProps={{ style: emailError ? errorStyle : {} }}
                 />
-                </Tooltip>
               </Grid>
               <Grid item xs={12}>
               <Tooltip title="6 תווים לפחות" enterTouchDelay={0} leaveTouchDelay={2000}>
@@ -1012,7 +1010,6 @@ const SignUp = () => {
                 <PasswordStrengthBar password={password} />
               </Grid>
               <Grid item xs={12}>
-              <Tooltip title="על הסיסמא להיות זהה" enterTouchDelay={0} leaveTouchDelay={2000}>
                 <TextField
                   required
                   fullWidth
@@ -1027,7 +1024,6 @@ const SignUp = () => {
                   sx={passwordConfirmError ? { borderColor: "error.main" } : {}}
                   InputProps={{ style: passwordConfirmError ? errorStyle : {} }}
                 />
-                </Tooltip>
               </Grid>
             </Grid>
             <Button
