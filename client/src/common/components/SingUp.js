@@ -959,7 +959,7 @@ const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-              <Tooltip title="אותיות ומספרים באנגלית" enterTouchDelay={0} leaveTouchDelay={2000}>
+              <Tooltip dir='rtl' title="אותיות ומספרים באנגלית" enterTouchDelay={0} leaveTouchDelay={2000}>
                 <TextField
                   required
                   fullWidth
@@ -991,7 +991,7 @@ const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-              <Tooltip title="6 תווים לפחות" enterTouchDelay={0} leaveTouchDelay={2000}>
+              <Tooltip dir='rtl' title="6 תווים לפחות" enterTouchDelay={0} leaveTouchDelay={2000}>
                 <TextField
                   required
                   fullWidth
