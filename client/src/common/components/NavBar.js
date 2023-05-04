@@ -650,7 +650,8 @@ function NavBar(props) {
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        {/* <Toolbar disableGutters> */}
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
 
           
         <IconButton
