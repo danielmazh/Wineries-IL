@@ -42,7 +42,7 @@ const Page1 = ({
     <div style={{ direction: 'rtl', textAlign: 'right' }}>
       {/* <h1 style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0)' }}>-------------------------------------</h1> */}
 
-      <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+      <div style={{ border: window.innerWidth >= 600 ? "1px solid gray" : "none", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
       <Box
         component="span"

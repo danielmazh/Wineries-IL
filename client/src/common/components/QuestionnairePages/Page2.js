@@ -118,9 +118,9 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
 
   return (
     <ResponsiveWrapper>
-    <div >
+    <div style={{ direction: 'rtl', textAlign: 'right' }}>
       {/* <h1 style={{textAlign: 'center', color: 'rgba(0, 0, 0, 0)'}}>-------------------------------------</h1> */}
-      <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+      <div style={{ border: window.innerWidth >= 600 ? "1px solid gray" : "none", padding: "10px", borderRadius: "5px", position: 'relative' }}>
 
       <Box
         component="span"
@@ -155,8 +155,14 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Box style={{ display: "flex", alignItems: "center", margin: "0 50px" }}>
 
+        <Box textAlign="center" display="flex" justifyContent="center" alignItems="center">
+          <InputLabel style={{fontSize: "25px",}} htmlFor="KosherType">כשרות היקב </InputLabel>
+        </Box>
+
+        <FormControl fullWidth>
+
           <label style={{ display: "flex", alignItems: "center", fontSize: "20px" }}>
-            מעוניינים שהיקב יהיה כשר??
+
             <Checkbox 
               name="KosherType"
               checked={formData.KosherType}
@@ -164,9 +170,11 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
               style={{ fontSize: "45px" }}
             />
           </label>
+          </FormControl>
 
         </Box>
       </div>
+
       {formData.KosherType && (
         <div>
           <Box
@@ -199,6 +207,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
               </span>
             </div>
           </Box>
+
           {validation.KosherType_GRADE && (
             <div className="error" style={{ textAlign: 'center' }}>
               {validation.KosherType_GRADE}
@@ -207,6 +216,8 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
         </div>
       )}
   </div>
+
+
 
 
 
@@ -253,6 +264,7 @@ const handleselectedWinesTypesOptions = (selectedOptions) => {
 
       </FormControl>
     </Box>
+
 
         {formData.TourStyle && (
           <div>

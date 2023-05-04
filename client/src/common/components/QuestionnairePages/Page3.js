@@ -39,7 +39,7 @@ const Page3 = ({ formData, totalPages }) => {
   return (
     <ResponsiveWrapper>
     <div >
-      <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px", position: 'relative' }}>
+      <div style={{ padding: "10px", borderRadius: "5px", position: 'relative' }}>
     
 
     <Box
