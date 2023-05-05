@@ -643,7 +643,6 @@ import wineriesLogo from '../../assets/WINERIES-LOGO.png';
 import PasswordStrengthBar from '../components/inner-component/PassStrength';
 import Tooltip from '@mui/material/Tooltip';
 
-import { GoogleLogin } from 'react-google-login';
 
 
 // import '../../styles/LogIn.css'; // Import custom CSS file
@@ -665,7 +664,6 @@ const SignUp = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passwordConfirmError, setPasswordConfirmError] = useState(false);
-  const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 
   const navigate = useNavigate();
