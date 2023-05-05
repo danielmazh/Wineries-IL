@@ -268,7 +268,7 @@ function HomePage(props) {
     },
   };
 
-  const aboutText = useTypingEffect('חקור את היקבים הטובים ביותר של ישראל על פני אזורים מגוונים, ומצא את חווית טעימות היין המושלמת ללא מאמץ', 50);
+  const aboutText = useTypingEffect('מצאו עבורכם סיור יין בכמה דקות וללא מאמץ', 50);
 
   return (
     <div>
