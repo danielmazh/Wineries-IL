@@ -128,6 +128,7 @@ import Logo from "../../../assets/logo-new.svg";
 import ResponsiveWrapper from "../styled-components/ResponsiveWrapper";
 
 const Page0 = ({ first_name, last_name }) => {
+  const authToken = localStorage.getItem('token');
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
