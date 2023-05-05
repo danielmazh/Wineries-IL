@@ -17,7 +17,11 @@ function PersonalZonePage() {
         </>
 
       ) : (
-        <p dir='rtl' style={{ textAlign: 'center' }}>זהו תוכן למשתמשים רשומים בלבד!</p>
+
+        <>
+        <QuestionnaireForm />
+        </>
+        // <p dir='rtl' style={{ textAlign: 'center' }}>זהו תוכן למשתמשים רשומים בלבד!</p>
       )}
     </>
     </div>

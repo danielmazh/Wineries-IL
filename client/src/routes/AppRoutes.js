@@ -19,7 +19,12 @@ function AppRoutes() {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+
+
         <Route path="/PersonalZone/:token" element={<PersonalZonePage />} />
+        <Route path="/PersonalZone" element={<PersonalZonePage />} />
+
+
         <Route path="/userdata" element={<UserDataPage />} />
         <Route path="/addwinery" element={<AddWineryPage />} />
         <Route path="/profile" element={<ProfilePage />} />

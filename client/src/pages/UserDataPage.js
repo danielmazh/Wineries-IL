@@ -14,7 +14,9 @@ function UserDataPage() {
         {authToken ? (
           <DisplayTourResults />
         ) : (
-          <p dir='rtl' style={{ textAlign: 'center' }}>זהו תוכן למשתמשים רשומים בלבד!</p>
+          <DisplayTourResults />
+
+          // <p dir='rtl' style={{ textAlign: 'center' }}>זהו תוכן למשתמשים רשומים בלבד!</p>
           )}
       </>
     </div>
