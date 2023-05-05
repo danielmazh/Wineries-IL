@@ -183,6 +183,32 @@ const Page1 = ({
       <br />
       <br />
 
+
+      <InputLabel htmlFor="TourPeopleCount"> מספר האנשים בסיור</InputLabel>
+      <FormControl fullWidth>
+        <InputLabel htmlFor="TourPeopleCount"> יש להזין ערך</InputLabel>
+        <TextField
+          id="TourPeopleCount"
+          name="TourPeopleCount"
+          type="number"
+          value={formData.TourPeopleCount}
+          onChange={handleOtherInputChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            min: 1,
+          }}
+        >
+        </TextField>
+      </FormControl>
+      {validation.TourPeopleCount && <div className="error">{validation.TourPeopleCount}</div>}
+
+
+
+      <br />
+
+
       <InputLabel>מהן שעות הסיור הרצויות עבורכם</InputLabel>
 
       <div style={{ border: "1px solid gray", padding: "10px", borderRadius: "5px" }}>
@@ -223,28 +249,6 @@ const Page1 = ({
         </div>
       </div>
       {validation.TourTime && <div className="error">{validation.TourTime}</div>}
-
-      <br />
-
-      <InputLabel htmlFor="TourPeopleCount"> מספר האנשים בסיור</InputLabel>
-      <FormControl fullWidth>
-        <InputLabel htmlFor="TourPeopleCount"> יש להזין ערך</InputLabel>
-        <TextField
-          id="TourPeopleCount"
-          name="TourPeopleCount"
-          type="number"
-          value={formData.TourPeopleCount}
-          onChange={handleOtherInputChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            min: 1,
-          }}
-        >
-        </TextField>
-      </FormControl>
-      {validation.TourPeopleCount && <div className="error">{validation.TourPeopleCount}</div>}
 
       <br />
       <br />
