@@ -268,7 +268,7 @@ function HomePage(props) {
     },
   };
 
-  const aboutText = useTypingEffect('מצאו עבורכם סיור יין בכמה דקות וללא מאמץ', 50);
+  const aboutText = useTypingEffect('מצאו את חווית סיור היין המושלמת במהירות וללא מאמץ!', 50);
 
   return (
     <div>
