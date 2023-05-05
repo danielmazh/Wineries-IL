@@ -78,9 +78,13 @@ function DisplayTourResults() {
   }, [tourCount]);
 
 
-
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
   
-
 
   function calculateAverage(wineries, tourCount) {
     const totalScore = wineries.slice(0, tourCount).reduce((sum, winery) => sum + winery.weightedScore, 0);
@@ -97,6 +101,7 @@ function DisplayTourResults() {
 
   function handleNext() {
     setTableIndex((prevIndex) => (prevIndex + 1) % queryResults.length);
+    scrollToTop();
   }
 
   function handlePrevious() {

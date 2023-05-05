@@ -1297,11 +1297,15 @@ async function handleFormSubmit  (event)  {
   const handlePreviousClick = () => {
     // console.log('currentPage', currentPage);
     setCurrentPage(currentPage - 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   };
 
   const handleNextClick = () => {
     // console.log('currentPage', currentPage);
     setCurrentPage(currentPage + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   };
 
 

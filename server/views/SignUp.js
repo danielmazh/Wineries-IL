@@ -1,3 +1,4 @@
+// server\views\SignUp.js
 const signUpService = require("../services/SignUp");
 
 function signUp(req, res, next) {
