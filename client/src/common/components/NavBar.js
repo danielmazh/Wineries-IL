@@ -427,6 +427,7 @@ function NavBar(props) {
   const settings = props.authToken
     ? [
         { name: 'פרופיל', path: '/profile' },
+        { name: 'הוספת יקב', path: '/addwinery' },
         { name: 'התנתקות', action: handleLogout },
       ]
     : [
