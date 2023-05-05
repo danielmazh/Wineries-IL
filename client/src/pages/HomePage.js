@@ -227,12 +227,135 @@
 
 
 
+// import React from 'react';
+// import NavBar from '../common/components/NavBar';
+// import Avatar from '@mui/material/Avatar';
+// import Typography from '@mui/material/Typography';
+// import wineriesLogo from '../../src/assets/logo-new.svg';
+// import backgroundImage from '../assets/backrounds/test1.jpg';
+
+// import Container from '@mui/material/Container';
+// import CssBaseline from '@mui/material/CssBaseline';
+// import Box from '@mui/material/Box';
+
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// import useTypingEffect from '../../src/useTypingEffect';
+
+// const theme = createTheme();
+
+// function HomePage(props) {
+//   const authToken = localStorage.getItem('token');
+
+//   const styles = {
+//     backgroundContainer: {
+//       backgroundImage: `url(${backgroundImage})`,
+//       backgroundSize: 'cover',
+//       backgroundPosition: 'center',
+//       backgroundRepeat: 'no-repeat',
+//       backgroundColor: 'rgba(255, 255, 255, 0.5)', // white with 50% transparency
+//       position: 'absolute',
+//       top: 0,
+//       left: 0,
+//       width: '100%',
+//       height: '100%',
+//       zIndex: -1,
+//     },
+//     typingContainer: {
+//       backgroundColor: 'rgba(255, 255, 255, 0.7)', // white with 70% transparency
+//       padding: '10px 20px',
+//       borderRadius: '8px',
+//     },
+//   };
+
+//   const aboutText = useTypingEffect('מצאו את חווית סיור היין המושלמת במהירות וללא מאמץ!', 50);
+
+//   return (
+//     <div>
+//       <div style={styles.backgroundContainer}></div>
+//       <NavBar authToken={authToken} />
+//       <ThemeProvider theme={theme}>
+//         <Container dir='rtl' component="main" maxWidth="xs">
+//           <CssBaseline />
+
+//           <Box
+//             sx={{
+//               marginTop: '15%',
+//               display: 'flex',
+//               flexDirection: 'column',
+//               alignItems: 'center',
+//             }}
+//           >
+
+//             <Avatar sx={{ m: 3, bgcolor: 'transparent', width: 250, height: 250, borderRadius: 0 }}>
+//               <img src={wineriesLogo} alt="App Logo" width="200" height="200" />
+//             </Avatar>
+
+//             <Typography
+            
+//               component="h1"
+//               variant="h5"
+//               sx={{
+//                 fontWeight: 'bold',
+//                 fontFamily: 'Heebo, sans-serif',
+//                 color: 'rgba(255, 215, 0, 0.9)', // Gold color with 90% opacity for a darker shade
+//                 fontSize: '50px',
+//                 textAlign: 'center',
+//                 textShadow: '3px 3px 4px rgba(0, 0, 0, 1)', // Black shadow with 50% opacity
+//               }}
+//             >
+//               {'  סיורי יין בישראל'}
+//             </Typography>
+
+//             <div style={styles.typingContainer}>
+//               <Typography
+//                 component="h2"
+//                 variant="h2"
+//                 sx={{
+//                   marginTop: '3%',
+//                   marginBottom: '3%',
+//                   fontWeight: 'bold',
+//                   fontFamily: 'Heebo, sans-serif',
+//                   color: 'rgba(255, 215, 0, 0.9)', // Gold color with 90% opacity for a darker shade
+//                   fontSize: '26px',
+//                   textAlign: 'center',
+//                   textShadow: '2px 2px 3px rgba(1, 1, 1, 1)', // Black shadow with 100% opacity
+//                 }}
+//                 >
+//                 {aboutText}
+//                 </Typography>
+//                 </div>
+//                 </Box>
+
+// </Container>
+// </ThemeProvider>
+// </div>
+// );
+// }
+
+// export default HomePage;
+
+
+
+
+
+
+
+
+// NEW CODE NO REGISTRATION!!!!!!!!!
+
 import React from 'react';
 import NavBar from '../common/components/NavBar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import wineriesLogo from '../../src/assets/logo-new.svg';
 import backgroundImage from '../assets/backrounds/test1.jpg';
+import { Link } from 'react-router-dom';
+
+
+import Button from '@mui/material/Button';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -325,13 +448,48 @@ function HomePage(props) {
                 {aboutText}
                 </Typography>
                 </div>
+
+                <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+                <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet"></link>
+
                 </Box>
 
-</Container>
-</ThemeProvider>
-</div>
-);
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                  }}
+                >
+                  <Link to="/PersonalZone" style={{ textDecoration: 'none' }}>
+                    <Button
+                    variant="contained"
+                    startIcon={<ArrowForwardIosIcon sx={{marginLeft: '0px'}} />}
+                    sx={{
+                      width: '100%', // or width: 'auto'
+                      height: '60px',
+                      backgroundColor: 'rgba(203, 67, 53)',
+                      '&:hover': { backgroundColor: 'rgba(231, 76, 60)' },
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      }}
+                    >
+                      <span style={{ margin: '0 auto', fontSize: '22px', fontFamily: 'Heebo, sans-serif', fontWeight: 900 }}>התחילו לתכנן!</span>
+
+                    </Button>
+                  </Link>
+                </Box>
+        </Container>
+      </ThemeProvider>
+
+  </div>
+  );
 }
 
 export default HomePage;
-
